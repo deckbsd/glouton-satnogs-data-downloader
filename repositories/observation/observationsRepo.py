@@ -25,7 +25,7 @@ class ObservationRepo:
 
             self.__read_page(r.json(), self.__cmd.start_date, self.__cmd.end_date)
             page += 1
-            params['page'] += str(page)
+            params['page'] = str(page)
 
         print('\ndownloading started (Ctrl + F5 to stop)...\t~(  ^o^)~')
         self.__create_workers_and_wait()
