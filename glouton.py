@@ -32,6 +32,8 @@ if __name__ == "__main__":
         parser = argparse.ArgumentParser(description='Execute get request.')
         parser.add_argument('--norad', '-n', dest='norad_id', required=True,
                             help='the norad satellite id')
+        parser.add_argument('--gsid', '-g', dest='ground_station_id',
+                            help='the ground station id')
         parser.add_argument('--sdate', '-s', dest='start_date', required=True,
                             help='start date (ex: 2018-01-20T00:51:54)')
         parser.add_argument('--edate', '-e', dest='end_date', required=True,
@@ -45,7 +47,7 @@ if __name__ == "__main__":
         args = parser.parse_args()
         start_date = datetime.strptime(args.start_date, '%Y-%m-%dT%H:%M:%S')
         end_date = datetime.strptime(args.end_date, '%Y-%m-%dT%H:%M:%S')
-        cmd = ProgramCmd(args.norad_id, start_date, end_date, args.working_dir)
+        cmd = ProgramCmd(args.norad_id, args.ground_station_id, start_date, end_date, args.working_dir)
 
         obs = ObservationRepo(cmd)
         obs.extract()
