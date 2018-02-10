@@ -11,14 +11,14 @@ Actual features :
         * norad id
         * start date
         * end date
+        * stations
     * working directory selection
+    * Docker container
 
 futur :
 -------
-    * Docker container
     * filters :
         * observation status
-        * stations
     * automatic mode for downloading automatically the new observations of one or more satellites.
     * modules : to be able to perform some process on satnogs data directly (like the creation of one ogg file for the payloads, ...). All of this has to be modular for adding new modules easily.
 
