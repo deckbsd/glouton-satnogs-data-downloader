@@ -3,6 +3,7 @@ from queue import Queue
 from infrastructure.satnogClient import SatnogClient
 from repositories.waterfall.waterfallRepo import WaterfallRepo
 from repositories.payload.payloadRepo import PayloadRepo
+from repositories.demoddata.demoddataRepo import DemoddataRepo
 
 
 class ObservationRepo:
@@ -12,6 +13,7 @@ class ObservationRepo:
         self.__client = SatnogClient()
         self.__waterfal_repo = WaterfallRepo(cmd.working_dir)
         self.__payload_repo = PayloadRepo(cmd.working_dir)
+        self.__demoddata_repo = DemoddataRepo(cmd.working_dir)
         self.__cmd = cmd
 
     def extract(self):
@@ -28,14 +30,15 @@ class ObservationRepo:
             page += 1
             params['page'] = str(page)
 
-        print('\ndownloading started (Ctrl + F5 to stop)...\t~(  ^o^)~')
+        print('\ndownloading started (Ctrl + C to stop)...\t~(  ^o^)~')
         self.__create_workers_and_wait()
 
     def __create_workers_and_wait(self):
         threads = []
         threads.append(self.__payload_repo.create_payload_worker())
         threads.append(self.__waterfal_repo.create_waterfall_worker())
-        while threads[0].is_alive() or threads[1].is_alive():
+        threads.append(self.__demoddata_repo.create_demoddata_worker())
+        while threads[0].is_alive() or threads[1].is_alive() or threads[2].is_alive():
             for t in threads:
                 # let's control to main thread every seconds (in order to be able to capture Ctrl + C if needed)
                 t.join(1)
@@ -46,6 +49,9 @@ class ObservationRepo:
                 observation, start_date, end_date)
             self.__payload_repo.register_command(
                 observation, start_date, end_date)
+            self.__demoddata_repo.register_command(
+                observation, start_date, end_date
+            )
 
     def __create_request_params(self):
         return {'norad': self.__cmd.norad_id, 'ground_station': self.__cmd.ground_station_id, 'start': self.__cmd.start_date.isoformat(
