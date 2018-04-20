@@ -1,7 +1,7 @@
 #!/usr/bin/python
 
 from datetime import datetime
-from repositories.observation.observationsRepo import ObservationRepo
+from services.observation.observationsService import ObservationsService
 from domain.parameters.programCmd import ProgramCmd
 import argparse
 import sys
@@ -38,18 +38,24 @@ if __name__ == "__main__":
                             help='start date (ex: 2018-01-20T00:51:54)')
         parser.add_argument('--edate', '-e', dest='end_date', required=True,
                             help='end date (ex: 2018-01-21T00:51:54)')
-        parser.add_argument('--dir', '-d', dest='working_dir', default='.',
+        parser.add_argument('--wdir', '-w', dest='working_dir', default='.',
                             help='the working directory')
         parser.add_argument('--module', '-m', nargs='*', dest='modules',
                             help='name of the module to use on data (not implemented yet!)')
         parser.add_argument('--auto', '-a', dest='auto',
                             help='download new sat data automatically (not implemented yet!)')
+        parser.add_argument('--payload', '-p', dest='download_payload', default=False, action="store_true",
+                            help='download payload data')
+        parser.add_argument('--waterfall', '-f', dest='download_waterfall', default=False, action="store_true",
+                            help='download waterfall data')
+        parser.add_argument('--demoddata', '-d', dest='download_demoddata', default=False, action="store_true",
+                            help='download demod data')
         args = parser.parse_args()
         start_date = datetime.strptime(args.start_date, '%Y-%m-%dT%H:%M:%S')
         end_date = datetime.strptime(args.end_date, '%Y-%m-%dT%H:%M:%S')
-        cmd = ProgramCmd(args.norad_id, args.ground_station_id, start_date, end_date, args.working_dir)
+        cmd = ProgramCmd(args.norad_id, args.ground_station_id, start_date, end_date, args.working_dir, args.download_payload, args.download_waterfall, args.download_demoddata)
 
-        obs = ObservationRepo(cmd)
+        obs = ObservationsService(cmd)
         obs.extract()
         print("\n\nall jobs are finished\t(   ^ o^)\m/")
     except KeyboardInterrupt:

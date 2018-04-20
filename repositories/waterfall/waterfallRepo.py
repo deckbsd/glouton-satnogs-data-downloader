@@ -3,9 +3,10 @@ from threading import Thread
 from commands.download.downloadCommandParams import DownloadCommandParams
 from commands.download.waterfallDownloadCommand import WaterfallDownloadCommand
 from workers.downloadWorker import DownloadWorker
+from domain.interfaces.downloadable import Downloadable
 
 
-class WaterfallRepo:
+class WaterfallRepo(Downloadable):
     def __init__(self, working_dir):
         self.__working_dir = working_dir
         self.__waterfall_commands = Queue()
@@ -17,7 +18,7 @@ class WaterfallRepo:
             cmd_parameters, observation)
         self.__waterfall_commands.put(waterfallDownloadCommand)
 
-    def create_waterfall_worker(self):
+    def create_worker(self):
         return self.__create_thread(self.__waterfall_commands)
 
     def __create_thread(self, queue):

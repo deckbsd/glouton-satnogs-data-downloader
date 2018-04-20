@@ -3,8 +3,9 @@ from threading import Thread
 from commands.download.downloadCommandParams import DownloadCommandParams
 from commands.download.demoddataDownloadCommand import DemoddataDownloadCommand
 from workers.downloadWorker import DownloadWorker
+from domain.interfaces.downloadable import Downloadable
 
-class DemoddataRepo:
+class DemoddataRepo(Downloadable):
     def __init__(self, working_dir):
         self.__working_dir = working_dir
         self.__Demoddata_commands = Queue()
@@ -16,7 +17,7 @@ class DemoddataRepo:
             cmd_parameters, observation)
         self.__Demoddata_commands.put(demoddataDownloadCommand)
 
-    def create_demoddata_worker(self):
+    def create_worker(self):
         return self.__create_thread(self.__Demoddata_commands)
 
     def __create_thread(self, queue):
