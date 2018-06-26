@@ -40,8 +40,6 @@ if __name__ == "__main__":
                             help='end date (ex: 2018-01-21T00:51:54)')
         parser.add_argument('--wdir', '-w', dest='working_dir', default='.',
                             help='the working directory')
-        parser.add_argument('--module', '-m', nargs='*', dest='modules',
-                            help='name of the module to use on data (not implemented yet!)')
         parser.add_argument('--auto', '-a', dest='auto',
                             help='download new sat data automatically (not implemented yet!)')
         parser.add_argument('--payload', '-p', dest='download_payload', default=False, action="store_true",
@@ -50,10 +48,34 @@ if __name__ == "__main__":
                             help='download waterfall data')
         parser.add_argument('--demoddata', '-d', dest='download_demoddata', default=False, action="store_true",
                             help='download demod data')
+        parser.add_argument('--demodm', dest='demoddata_modules', default=None,
+                            help='list of the modules to use while downloading demoddata separated by a ,')
+        parser.add_argument('--payloadm', dest='payload_modules', default=None,
+                            help='list of the modules to use while downloading demoddata separated by a ,')
+        parser.add_argument('--waterfallm', dest='waterfall_modules', default=None,
+                            help='list of the modules to use while downloading waterfall separated by a ,')
         args = parser.parse_args()
         start_date = datetime.strptime(args.start_date, '%Y-%m-%dT%H:%M:%S')
         end_date = datetime.strptime(args.end_date, '%Y-%m-%dT%H:%M:%S')
-        cmd = ProgramCmd(args.norad_id, args.ground_station_id, start_date, end_date, args.working_dir, args.download_payload, args.download_waterfall, args.download_demoddata)
+        payload_modules = None
+        demoddata_modules = None
+        waterfall_modules = None
+        if args.payload_modules is not None:
+            payload_modules = args.payload_modules.split(',')
+        if args.demoddata_modules is not None:
+            demoddata_modules = args.demoddata_modules.split(',')
+        if args.waterfall_modules is not None:
+            waterfall_modules = args.waterfall_modules.split(',')
+        cmd = ProgramCmd(args.norad_id,
+        args.ground_station_id,
+        start_date,
+        end_date, args.working_dir,
+        args.download_payload,
+        args.download_waterfall,
+        args.download_demoddata,
+        payload_modules,
+        demoddata_modules,
+        waterfall_modules)
 
         obs = ObservationsService(cmd)
         obs.extract()
@@ -68,3 +90,4 @@ if __name__ == "__main__":
 
 # -s 2017-05-20T00:51:54 -e 2017-09-20T00:51:54 -n 25338
 # -s 2018-01-20T00:51:54 -e 2018-01-21T00:51:54 -n 28654
+# -s 2017-05-20T00:51:54 -e 2017-09-20T00:51:54 -n 25338 --waterfallmf TestModule

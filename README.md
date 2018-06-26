@@ -14,12 +14,36 @@ Actual features :
         * stations
     * working directory selection
     * Docker container
+    * modules
 
-futur :
+Futur :
 -------
     * filters :
         * observation status
     * automatic mode for downloading automatically the new observations of one or more satellites.
-    * modules : to be able to perform some process on satnogs data directly (like the creation of one ogg file for the payloads, ...). All of this has to be modular for adding new modules easily.
+
+Modules :
+-------
+You can now create your own modules. These will be executed after each download from the category you selected. 
+
+The module that you develop must herite from ModuleBase and must implement the "runAfterDownload" method. This method receive the file name and the full path as parameters.
+
+Also the module and the name of the python file must be the same.
+
+Here is a very simple exemple (this module is in the sources) :
+from modules.moduleBase import ModuleBase
+
+class TestModule(ModuleBase):
+
+    def runAfterDownload(self, file_name, full_path):
+        print('executed after ' +  file_name)
+
+Here is a exemple of a command you have to use to trigger the TestModule after each waterfall download :
+-s 2017-05-20T00:51:54 -e 2017-09-20T00:51:54 -n 25338 --waterfallm TestModule,TestModule
+
+Docker :
+-------
+Glouton has a docker image that you can download [here on the docker hub]
+(https://hub.docker.com/r/deckbsd/glouton-satnogs-data-downloader/).
 
 All ideas or contributions are welcome. Feel free to use the [issues](https://github.com/deckbsd/glouton-satnogs-data-downloader/issues) tab :-)

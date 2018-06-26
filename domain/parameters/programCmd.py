@@ -1,5 +1,5 @@
 class ProgramCmd:
-    def __init__(self, norad_id, ground_station_id, start_date, end_date, working_dir, payloads, waterfalls, demoddata):
+    def __init__(self, norad_id, ground_station_id, start_date, end_date, working_dir, payloads, waterfalls, demoddata, payload_modules, demoddata_modules, waterfall_modules):
         self.norad_id = norad_id
         self.ground_station_id = ground_station_id
         self.start_date = start_date
@@ -8,3 +8,6 @@ class ProgramCmd:
         self.payloads = payloads
         self.waterfalls = waterfalls
         self.demoddata = demoddata
+        self.payload_modules = payload_modules
+        self.demoddata_modules = demoddata_modules
+        self.waterfall_modules = waterfall_modules

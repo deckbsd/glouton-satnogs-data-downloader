@@ -7,13 +7,14 @@ from domain.interfaces.downloadable import Downloadable
 
 
 class WaterfallRepo(Downloadable):
-    def __init__(self, working_dir):
+    def __init__(self, working_dir, modules):
         self.__working_dir = working_dir
         self.__waterfall_commands = Queue()
+        self.__modules = modules
 
     def register_command(self, observation, start_date, end_date):
         cmd_parameters = DownloadCommandParams(
-            self.__working_dir, self.__create_dir_name('waterfall', start_date, end_date))
+            self.__working_dir, self.__create_dir_name('waterfall', start_date, end_date), self.__modules)
         waterfallDownloadCommand = WaterfallDownloadCommand(
             cmd_parameters, observation)
         self.__waterfall_commands.put(waterfallDownloadCommand)

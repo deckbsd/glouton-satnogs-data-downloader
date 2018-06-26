@@ -24,3 +24,4 @@ class DemoddataDownloadCommand(DownloadCommand):
                 print('downloading...' + file_name)
                 with open(self.full_path + os.path.sep + file_name, "wb") as file:
                     file.write(r.content)
+                self.runModulesAfterDownload(file_name)
