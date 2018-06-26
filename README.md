@@ -31,6 +31,7 @@ The module that you develop must herite from ModuleBase and must implement the "
 Also the module and the name of the python file must be the same. The py file must be placed into the "modules" directory.
 
 Here is a very simple exemple (this module is in the sources) :
+
 from modules.moduleBase import ModuleBase
 
 class TestModule(ModuleBase):
@@ -39,11 +40,11 @@ class TestModule(ModuleBase):
         print('executed after ' +  file_name)
 
 Here is a exemple of a command you have to use to trigger the TestModule after each waterfall download :
+
 -s 2017-05-20T00:51:54 -e 2017-09-20T00:51:54 -n 25338 --waterfallm TestModule,TestModule
 
 Docker :
 -------
-Glouton has a docker image that you can download [here on the docker hub]
-(https://hub.docker.com/r/deckbsd/glouton-satnogs-data-downloader/).
+Glouton has a docker image that you can download [here on the docker hub](https://hub.docker.com/r/deckbsd/glouton-satnogs-data-downloader/).
 
 All ideas or contributions are welcome. Feel free to use the [issues](https://github.com/deckbsd/glouton-satnogs-data-downloader/issues) tab :-)
