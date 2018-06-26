@@ -28,7 +28,7 @@ You can now create your own modules. These will be executed after each download 
 
 The module that you develop must herite from ModuleBase and must implement the "runAfterDownload" method. This method receive the file name and the full path as parameters.
 
-Also the module and the name of the python file must be the same.
+Also the module and the name of the python file must be the same. The py file must be placed into the "modules" directory.
 
 Here is a very simple exemple (this module is in the sources) :
 from modules.moduleBase import ModuleBase
