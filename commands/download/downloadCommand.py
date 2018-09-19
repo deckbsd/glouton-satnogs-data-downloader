@@ -13,5 +13,5 @@ class DownloadCommand:
 
     def runModulesAfterDownload(self, file_name):
         if self.modules is not None:
-           for module in self.modules:
-               module.runAfterDownload(file_name, self.full_path)
+            for module in self.modules:
+                module.runAfterDownload(file_name, self.full_path, self.observation)

@@ -1,6 +1,7 @@
 from shared import config
 from queue import Queue
 from infrastructure.satnogClient import SatnogClient
+from shared.logger import logger
 
 
 class ObservationRepo:
@@ -21,7 +22,7 @@ class ObservationRepo:
             if r.status_code != 200:
                 break
 
-            print('scanning page...' + params['page'])
+            logger.Info('scanning page...' + params['page'])
             self.__read_page(r.json(), self.__cmd.start_date, self.__cmd.end_date)
             page += 1
             params['page'] = str(page)

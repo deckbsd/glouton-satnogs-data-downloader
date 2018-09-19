@@ -1,5 +1,6 @@
 from commands.download.downloadCommand import DownloadCommand
 from shared import fileHelper
+from shared.logger import logger
 import os
 import ntpath
 import requests
@@ -13,14 +14,19 @@ class PayloadDownloadCommand(DownloadCommand):
     def download(self):
         url = self.observation[self.__json_id]
         if not url:
-            print('no payload found for the observation ' + str(self.observation['id']) + ' of ' + self.observation['start'])
+            logger.Info('no payload found for the observation ' + str(self.observation['id']) + ' of ' + self.observation['start'])
             return
 
         fileHelper.create_dir_if_not_exist(self.full_path)
+        file_name = ntpath.basename(url)
+        full_path_file = self.full_path + os.path.sep + file_name
+        if os.path.exists(full_path_file):
+            logger.Warning('pass ' + file_name + '... file already exist')
+            return
+            
         r = self.client.get(url)
         if r.status_code == 200:
-            file_name = ntpath.basename(url)
-            print('downloading...' + file_name)
-            with open(self.full_path + os.path.sep + file_name, "wb") as file:
+            logger.Info('downloading...' + file_name)
+            with open(full_path_file, "wb") as file:
                 file.write(r.content)
             self.runModulesAfterDownload(file_name)

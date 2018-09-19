@@ -3,5 +3,6 @@
         "API_URL": "https://network.satnogs.org/api/",
         "HTTPS_PROXY": "",
         "HTTP_PROXY": ""
-    }
+    },
+    "LOGFILE": "gl.log"
 }
