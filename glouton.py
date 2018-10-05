@@ -35,6 +35,8 @@ if __name__ == "__main__":
                             help='the norad satellite id')
         parser.add_argument('--gsid', '-g', dest='ground_station_id',
                             help='the ground station id')
+        parser.add_argument('--status', '-t', dest='status',
+                            help='the Observation status (good, bad, unknown, failed')
         parser.add_argument('--sdate', '-s', dest='start_date', required='--last' not in sys.argv,
                             help='start date (ex: 2018-01-20T00:51:54)')
         parser.add_argument('--edate', '-e', dest='end_date', required='--last' not in sys.argv,
@@ -76,7 +78,9 @@ if __name__ == "__main__":
             cmd = ProgramCmd(args.norad_id,
             args.ground_station_id,
             start_date,
-            end_date, args.working_dir,
+            end_date,
+            args.status,
+            args.working_dir,
             args.download_payload,
             args.download_waterfall,
             args.download_demoddata,

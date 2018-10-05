@@ -15,14 +15,13 @@ Actual features :
         * start date
         * end date
         * stations
+        * observation status
     * working directory selection
     * Docker container
     * modules
 
 Futur :
 -------
-    * filters :
-        * observation status
     * automatic mode for downloading automatically the new observations of one or more satellites.
 
 Modules :
