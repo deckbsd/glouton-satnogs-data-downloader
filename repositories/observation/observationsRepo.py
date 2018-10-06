@@ -52,5 +52,5 @@ class ObservationRepo:
                     observation, start_date, end_date)
 
     def __create_request_params(self):
-        return {'norad': self.__cmd.norad_id, 'ground_station': self.__cmd.ground_station_id, 'start': self.__cmd.start_date.isoformat(
+        return {'satellite__norad_cat_id': self.__cmd.norad_id, 'ground_station': self.__cmd.ground_station_id, 'start': self.__cmd.start_date.isoformat(
         ), 'end': self.__cmd.end_date.isoformat(), 'vetted_status': self.__cmd.observation_status, 'page': '1', 'format': 'json'}
