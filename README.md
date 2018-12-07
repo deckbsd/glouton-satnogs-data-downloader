@@ -1,4 +1,4 @@
-<a href="https://snyk.io/test/github/deckbsd/glouton-satnogs-data-downloader"><img src="https://snyk.io/test/github/deckbsd/glouton-satnogs-data-downloader/badge.svg" alt="Known Vulnerabilities" data-canonical-src="https://snyk.io/test/github/deckbsd/glouton-satnogs-data-downloader" style="max-width:100%;"></a>
+[![Known Vulnerabilities](https://snyk.io/test/github/deckbsd/glouton-satnogs-data-downloader/badge.svg)](https://snyk.io/test/github/deckbsd/glouton-satnogs-data-downloader)
 # glouton-satnogs-data-downloader
 The console app is a downloader for the data provided by the satnogs network.
 
