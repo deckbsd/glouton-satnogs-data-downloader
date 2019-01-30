@@ -7,7 +7,7 @@
     "MODULES": {
         "PAYLOAD": [],
         "WATERFALL": [],
-        "DEMODDATA": ["TestModule"],
+        "DEMODDATA": [],
         "FORALL": []
     },
     "LOGFILE": "gl.log"
