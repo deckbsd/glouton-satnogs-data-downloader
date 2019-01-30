@@ -4,5 +4,11 @@
         "HTTPS_PROXY": "",
         "HTTP_PROXY": ""
     },
+    "MODULES": {
+        "PAYLOAD": [],
+        "WATERFALL": [],
+        "DEMODDATA": ["TestModule"],
+        "FORALL": []
+    },
     "LOGFILE": "gl.log"
 }

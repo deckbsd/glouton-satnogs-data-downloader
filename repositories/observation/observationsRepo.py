@@ -1,4 +1,3 @@
-from shared import config
 from queue import Queue
 from infrastructure.satnogClient import SatnogClient
 from shared.logger import logger
@@ -7,7 +6,6 @@ from shared.logger import logger
 class ObservationRepo:
     def __init__(self, cmd, repos):
         self.OBSERVATION_URL = 'observations/'
-        self.__config = config.read()
         self.__client = SatnogClient()
         self.__repos = repos
         self.__cmd = cmd
