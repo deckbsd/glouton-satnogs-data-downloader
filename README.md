@@ -6,6 +6,10 @@ command example :
 ```
 python ./glouton.py -s 2018-01-20T00:51:54 -e 2018-01-21T00:51:54 -n 28654
 ```
+command example if you just want the payload :
+```
+python ./glouton.py -s 2018-01-20T00:51:54 -e 2018-01-21T00:51:54 -n 28654 --payload
+```
 
 Actual features :
 -------
@@ -21,7 +25,7 @@ Actual features :
     * Docker container
     * modules
 
-Futur :
+Future :
 -------
     * automatic mode for downloading automatically the new observations of one or more satellites.
 
