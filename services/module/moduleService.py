@@ -44,9 +44,9 @@ class ModuleService:
     def __getModulesFromConfig(self, modules, config_array_name):
         try:
             modules_from_config = self.__config['MODULES'][config_array_name]
-        except Exception as ex:
-            print('config.json : modules bad format')
-            logger.Error(ex)
+        except:
+            logger.Warning('config.json : modules bad format')
+            modules_from_config = []
         
         if len(modules_from_config) == 0 and modules is None:
             return None
