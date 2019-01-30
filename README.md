@@ -6,7 +6,7 @@ command example :
 ```
 python ./glouton.py -s 2018-01-20T00:51:54 -e 2018-01-21T00:51:54 -n 28654
 ```
-command example if you just want the payload :
+command example if you just want the payload files :
 ```
 python ./glouton.py -s 2018-01-20T00:51:54 -e 2018-01-21T00:51:54 -n 28654 --payload
 ```
