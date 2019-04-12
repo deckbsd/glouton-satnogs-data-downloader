@@ -7,8 +7,8 @@ import requests
 
 
 class WaterfallDownloadCommand(DownloadCommand):
-    def __init__(self, params, observation):
-        DownloadCommand.__init__(self, params, observation)
+    def __init__(self, params, observation, modules_commands):
+        DownloadCommand.__init__(self, params, observation, modules_commands)
         self.__json_id = "waterfall"
 
     def download(self):
