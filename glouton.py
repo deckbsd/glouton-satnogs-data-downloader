@@ -41,6 +41,14 @@ if __name__ == "__main__":
                             help='start date (ex: 2018-01-20T00:51:54)')
         parser.add_argument('--edate', '-e', dest='end_date', required='--last' not in sys.argv,
                             help='end date (ex: 2018-01-21T00:51:54)')
+        parser.add_argument('--user', '-u', dest='user_id',
+                            help='the user id')
+        parser.add_argument('--tuuid', '-i', dest='transmitter_uuid',
+                            help='the transmitter uuid')
+        parser.add_argument('--tmode', '-m', dest='transmitter_mode',
+                            help='the transmitter mode')
+        parser.add_argument('--ttype', '-y', dest='transmitter_type',
+                            help='the transmitter type')
         parser.add_argument('--wdir', '-w', dest='working_dir', default='.',
                             help='the working directory')
         parser.add_argument('--auto', '-a', dest='auto',
@@ -86,7 +94,11 @@ if __name__ == "__main__":
             args.download_demoddata,
             payload_modules,
             demoddata_modules,
-            waterfall_modules)
+            waterfall_modules,
+            args.user_id,
+            args.transmitter_uuid,
+            args.transmitter_mode,
+            args.transmitter_type)
             session.save_program_parameters(cmd)
 
         obs = ObservationsService(cmd)

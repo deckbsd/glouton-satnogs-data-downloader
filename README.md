@@ -10,6 +10,9 @@ command example if you just want the payload files :
 ```
 python ./glouton.py -s 2018-01-20T00:51:54 -e 2018-01-21T00:51:54 -n 28654 --payload
 ```
+```
+python ./glouton.py -s 2019-05-09T00:51:54 -e 2019-05-30T00:51:54 -n 40069 --waterfallm TestModule,CSV --tuuid 8oBdHqMqgmMiWvRru6fWMn --ttype Transmitter --tmode LRPT
+```
 
 Actual features :
 -------
