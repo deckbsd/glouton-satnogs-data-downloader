@@ -1,10 +1,11 @@
 #!/usr/bin/python
 
 from datetime import datetime
-from services.observation.observationsService import ObservationsService
-from services.session.sessionService import SessionService
-from domain.parameters.programCmd import ProgramCmd
-from shared.logger import logger
+
+from glouton.services.observation.observationsService import ObservationsService
+from glouton.services.session.sessionService import SessionService
+from glouton.domain.parameters.programCmd import ProgramCmd
+from glouton.shared.logger import logger
 import argparse
 import sys
 

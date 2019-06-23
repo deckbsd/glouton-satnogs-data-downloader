@@ -3,8 +3,9 @@ from glouton.shared import config
 
 class Logger:
     def __init__(self) -> None:
-        self.__config = _config = config.read()
-        logging.basicConfig(filename=self.__config['LOGFILE'] , format='%(asctime)s %(levelname)s:%(message)s', datefmt='%m/%d/%Y %I:%M:%S %p', level=logging.DEBUG)
+        if config is not None:
+            self.__config = _config = config.read()
+            logging.basicConfig(filename=self.__config['LOGFILE'] , format='%(asctime)s %(levelname)s:%(message)s', datefmt='%m/%d/%Y %I:%M:%S %p', level=logging.DEBUG)
 
     def Info(self, info) -> None:
         print(info)

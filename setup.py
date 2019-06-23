@@ -25,6 +25,7 @@ setup(
     extras_require={"test": ["pytest"]},
     packages=find_packages(exclude=["tests", "docs"]),
     data_files=[('glouton', ['glouton/config.json'])],
+    scripts=['bin/glouton'],
     keywords="satnogs, telemetry, satellite, payload, data",
     classifiers=[
         "Development Status :: 3 - Alpha", "Intended Audience :: Developers",
