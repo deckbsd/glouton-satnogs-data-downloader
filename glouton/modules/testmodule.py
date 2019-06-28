@@ -1,5 +1,5 @@
 
-from modules.moduleBase import ModuleBase
+from glouton.modules.moduleBase import ModuleBase
 
 class TestModule(ModuleBase):
 
