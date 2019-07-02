@@ -1,4 +1,4 @@
-from glouton.infrastructure.satnogClient import SatnogClient
+from glouton.infrastructure.satnogNetworkClient import SatnogNetworkClient
 from glouton.commands.module.moduleCommandParams import ModuleCommandParams
 from glouton.commands.module.moduleCommand import ModuleCommand
 import os
@@ -6,7 +6,7 @@ import os
 class DownloadCommand:
     def __init__(self, params, observation, modules_commands):
         self.observation = observation
-        self.client = SatnogClient()
+        self.client = SatnogNetworkClient()
         self.full_path = os.path.join(params.working_dir, params.sub_folder)
         self.modules = params.modules
         self.modules_commands = modules_commands

@@ -1,4 +1,3 @@
-from glouton.infrastructure.satnogClient import SatnogClient
 import os
 
 class ModuleCommand:

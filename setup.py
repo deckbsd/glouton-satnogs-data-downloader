@@ -13,9 +13,9 @@ with open(path.join(here, 'README.md'), encoding='utf-8') as f:
     long_description = f.read()
 
 setup(
-    version="0.1.0",
+    version="0.2.0",
     name="glouton",
-    description="",
+    description="Glouton is a cli program which helps you downloading satnogs data",
     long_description=long_description,
     url="https://github.com/deckbsd/glouton-satnogs-data-downloader.git",
     license="MIT",
@@ -26,10 +26,10 @@ setup(
     packages=find_packages(exclude=["tests", "docs"]),
     data_files=[('glouton', ['glouton/config.json'])],
     scripts=['bin/glouton'],
-    keywords="satnogs, telemetry, satellite, payload, data",
+    keywords="satnogs, telemetry, satellite, payload, data, db, download",
     classifiers=[
         "Development Status :: 3 - Alpha", "Intended Audience :: Developers",
         "Programming Language :: Python :: 3",
-        "License :: OSI Approved"
+        "License :: MIT"
     ],
 )

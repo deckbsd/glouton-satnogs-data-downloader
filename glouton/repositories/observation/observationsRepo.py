@@ -1,12 +1,12 @@
 from queue import Queue
-from glouton.infrastructure.satnogClient import SatnogClient
+from glouton.infrastructure.satnogNetworkClient import SatnogNetworkClient
 from glouton.shared.logger import logger
 
 
 class ObservationRepo:
     def __init__(self, cmd, repos):
         self.OBSERVATION_URL = 'observations/'
-        self.__client = SatnogClient()
+        self.__client = SatnogNetworkClient()
         self.__repos = repos
         self.__cmd = cmd
         self.__threads = []

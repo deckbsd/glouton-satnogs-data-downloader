@@ -1,17 +1,27 @@
 [![Known Vulnerabilities](https://snyk.io/test/github/deckbsd/glouton-satnogs-data-downloader/badge.svg)](https://snyk.io/test/github/deckbsd/glouton-satnogs-data-downloader)
 # glouton-satnogs-data-downloader
-The console app is a downloader for the data provided by the satnogs network.
+This cli app is a downloader for the data provided by the satnogs network.
 
-command example : 
+Installation :
+-------
 ```
-python ./glouton.py -s 2018-01-20T00:51:54 -e 2018-01-21T00:51:54 -n 28654
+python ./setup.py install
+```
+
+Usage :
+-------
+
+simple command example : 
+```
+python ./bin/glouton -s 2018-01-20T00:51:54 -e 2018-01-21T00:51:54 -n 28654
 ```
 command example if you just want the payload files :
 ```
-python ./glouton.py -s 2018-01-20T00:51:54 -e 2018-01-21T00:51:54 -n 28654 --payload
+python ./bin/glouton -s 2018-01-20T00:51:54 -e 2018-01-21T00:51:54 -n 28654 --payload
 ```
+command example if you want all data type from specific transmitter type, mode and uuid and apply module processing on waterfall :
 ```
-python ./glouton.py -s 2019-05-09T00:51:54 -e 2019-05-30T00:51:54 -n 40069 --waterfallm TestModule,CSV --tuuid 8oBdHqMqgmMiWvRru6fWMn --ttype Transmitter --tmode LRPT
+python ./bin/glouton -s 2019-05-09T00:51:54 -e 2019-05-30T00:51:54 -n 40069 --waterfallm TestModule,CSV --tuuid 8oBdHqMqgmMiWvRru6fWMn --ttype Transmitter --tmode LRPT
 ```
 
 Actual features :
@@ -24,6 +34,11 @@ Actual features :
         * end date
         * stations
         * observation status
+        * transmitter mode
+        * transmitter uuid
+        * transmitter type
+        * vetted status
+        * vetted user
     * working directory selection
     * Docker container
     * modules
@@ -31,6 +46,7 @@ Actual features :
 Future :
 -------
     * automatic mode for downloading automatically the new observations of one or more satellites.
+    * download data from satnogs db
 
 Modules :
 -------

@@ -32,15 +32,16 @@ if __name__ == "__main__":
     try:
         glouton()
         parser = argparse.ArgumentParser(description='Execute get request.')
+        # Network API parameters :
         parser.add_argument('--norad', '-n', dest='norad_id', required='--last' not in sys.argv,
                             help='the norad satellite id')
         parser.add_argument('--gsid', '-g', dest='ground_station_id',
                             help='the ground station id')
         parser.add_argument('--status', '-t', dest='status',
                             help='the Observation status (good, bad, unknown, failed')
-        parser.add_argument('--sdate', '-s', dest='start_date', required='--last' not in sys.argv,
+        parser.add_argument('--sdate', '-s', dest='start_date', required='--last' not in sys.argv and '--db' not in sys.argv,
                             help='start date (ex: 2018-01-20T00:51:54)')
-        parser.add_argument('--edate', '-e', dest='end_date', required='--last' not in sys.argv,
+        parser.add_argument('--edate', '-e', dest='end_date', required='--last' not in sys.argv and '--db' not in sys.argv,
                             help='end date (ex: 2018-01-21T00:51:54)')
         parser.add_argument('--user', '-u', dest='user_id',
                             help='the user id')
@@ -68,6 +69,9 @@ if __name__ == "__main__":
                             help='list of the modules to use while downloading waterfall separated by a ,')
         parser.add_argument('--last', dest='last', action='store_true',
                             help='restart a download from the last command line.')
+        # DB API parameters :
+        parser.add_argument('--db', dest='db', action='store_true', default=False,
+                            help='download data from satnogs db api')
         args = parser.parse_args()
         session = SessionService()
         if args.last is True:
@@ -102,8 +106,10 @@ if __name__ == "__main__":
             args.transmitter_type)
             session.save_program_parameters(cmd)
 
-        obs = ObservationsService(cmd)
-        obs.extract()
+        if args.db is False:
+            obs = ObservationsService(cmd)
+            obs.extract()
+
         logger.Info("\n\nall jobs are finished\t(   ^ o^)\m/")
     except KeyboardInterrupt:
         print("Exit...")

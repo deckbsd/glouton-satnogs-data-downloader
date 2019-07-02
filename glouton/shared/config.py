@@ -5,7 +5,8 @@ def read():
     config = None
     default_config = {
                 "DEFAULT": {
-                    "API_URL": "https://network.satnogs.org/api/",
+                    "NETWORK_API_URL": "https://network.satnogs.org/api/",
+                    "DB_API_URL": "https://db.satnogs.org/api/",
                     "HTTPS_PROXY": "",
                     "HTTP_PROXY": ""
                 },
@@ -13,13 +14,14 @@ def read():
                     "PAYLOAD": [],
                     "WATERFALL": [],
                     "DEMODDATA": [],
+                    "FRAME": [],
                     "FORALL": []
                 },
                 "LOGFILE": "glouton.log"
             }
     try:
-        if os.path.exists("glouton-config.json"):
-            with open('glouton-config.json', 'r') as f:
+        if os.path.exists(os.getcwd() + "/../glouton/config.json"):
+            with open(os.getcwd() + "/../glouton/config.json", 'r') as f:
                 config = json.load(f)
         else:
             config = default_config
