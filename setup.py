@@ -13,10 +13,9 @@ with open(path.join(here, 'README.md'), encoding='utf-8') as f:
     long_description = f.read()
 
 setup(
-    version="0.2.0",
+    version="0.3.0",
     name="glouton",
-    description="Glouton is a cli program which helps you downloading satnogs data",
-    long_description=long_description,
+    description="`Glouton is a cli program which helps you downloading satnogs data`",
     url="https://github.com/deckbsd/glouton-satnogs-data-downloader.git",
     license="MIT",
     author="deckbsd",
@@ -30,6 +29,6 @@ setup(
     classifiers=[
         "Development Status :: 3 - Alpha", "Intended Audience :: Developers",
         "Programming Language :: Python :: 3",
-        "License :: MIT"
+        "License :: OSI Approved :: MIT License"
     ],
 )
