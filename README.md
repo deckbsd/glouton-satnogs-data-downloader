@@ -6,7 +6,12 @@ This cli app is a downloader for the data provided by the satnogs network.
 Installation :
 -------
 ```
+git clone https://github.com/deckbsd/glouton-satnogs-data-downloader.git
 python ./setup.py install
+```
+or
+```
+pip install glouton
 ```
 
 Usage :
@@ -46,8 +51,8 @@ Actual features :
 
 Future :
 -------
+    * download data from satnogs db (dev ongoing)
     * automatic mode for downloading automatically the new observations of one or more satellites.
-    * download data from satnogs db
 
 Modules :
 -------
