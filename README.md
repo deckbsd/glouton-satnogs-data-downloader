@@ -1,5 +1,5 @@
 [![Known Vulnerabilities](https://snyk.io/test/github/deckbsd/glouton-satnogs-data-downloader/badge.svg)](https://snyk.io/test/github/deckbsd/glouton-satnogs-data-downloader)
-[![Docker Build](https://img.shields.io/docker/build/deckbsd/glouton-satnogs-data-downloader)](DOCKER)
+[![Docker Build](https://img.shields.io/docker/build/deckbsd/glouton-satnogs-data-downloader)](https://hub.docker.com/r/deckbsd/glouton-satnogs-data-downloader/)
 # glouton-satnogs-data-downloader
 This cli app is a downloader for the data provided by the satnogs network.
 
@@ -75,7 +75,7 @@ class TestModule(ModuleBase):
 Here is a exemple of a command you have to use to trigger the TestModule after each waterfall download :
 
 ```
--s 2017-05-20T00:51:54 -e 2017-09-20T00:51:54 -n 25338 --waterfallm TestModule,TestModule
+-s 2017-05-20T00:51:54 -e 2017-09-20T00:51:54 -n 25338 --waterfallm TestModule,AnotherModule
 ```
 Docker :
 -------
