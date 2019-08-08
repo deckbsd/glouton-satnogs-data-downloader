@@ -1,0 +1,10 @@
+[
+  "test/test_configuration.py::test_default_configuration",
+  "test/test_observation_service.py::test_loading_all_repository_types",
+  "test/test_observation_service.py::test_loading_only_payload_repository_types",
+  "test/test_observation_service.py::test_loading_only_waterfall_repository_types",
+  "test/test_observation_service.py::test_loading_only_Demoddata_repository_types",
+  "test/test_observation_service.py::test_loading_only_Payload_Demoddata_repository_types",
+  "test/test_observation_service.py::test_loading_only_Waterfall_Demoddata_repository_types",
+  "test/test_observation_service.py::test_default_loading_repository"
+]
