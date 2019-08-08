@@ -1,4 +1,5 @@
 [![Known Vulnerabilities](https://snyk.io/test/github/deckbsd/glouton-satnogs-data-downloader/badge.svg)](https://snyk.io/test/github/deckbsd/glouton-satnogs-data-downloader)
+[![Docker Build](https://img.shields.io/docker/build/deckbsd/glouton-satnogs-data-downloader)](DOCKER)
 # glouton-satnogs-data-downloader
 This cli app is a downloader for the data provided by the satnogs network.
 
@@ -76,3 +77,7 @@ Docker :
 Glouton has a docker image that you can download [here on the docker hub](https://hub.docker.com/r/deckbsd/glouton-satnogs-data-downloader/).
 
 All ideas or contributions are welcome. Feel free to use the [issues](https://github.com/deckbsd/glouton-satnogs-data-downloader/issues) tab :-)
+
+License :
+-------
+[![license](https://img.shields.io/github/license/deckbsd/glouton-satnogs-data-downloader)](LICENSE)
