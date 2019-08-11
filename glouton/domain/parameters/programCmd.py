@@ -15,7 +15,13 @@ class ProgramCmd:
     user,
     transmitter_uuid,
     transmitter_mode,
-    transmitter_type):
+    transmitter_type,
+    frame_modules,
+    observer,
+    app_source,
+    transmitter,
+    page_from,
+    page_to):
         self.norad_id = norad_id
         self.ground_station_id = ground_station_id
         self.start_date = start_date
@@ -32,3 +38,9 @@ class ProgramCmd:
         self.transmitter_uuid = transmitter_uuid
         self.transmitter_mode = transmitter_mode
         self.transmitter_type = transmitter_type
+        self.frame_modules = frame_modules
+        self.observer = observer
+        self.app_source = app_source
+        self.transmitter = transmitter
+        self.page_from = page_from
+        self.page_to = page_to

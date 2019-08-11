@@ -1,4 +1,4 @@
-from glouton.commands.download.downloadCommand import DownloadCommand
+from glouton.commands.download.downloadObservationCommand import DownloadObservationCommand
 from glouton.shared import fileHelper
 from glouton.shared.logger import logger
 import os
@@ -6,9 +6,9 @@ import ntpath
 import requests
 
 
-class WaterfallDownloadCommand(DownloadCommand):
+class WaterfallDownloadCommand(DownloadObservationCommand):
     def __init__(self, params, observation, modules_commands):
-        DownloadCommand.__init__(self, params, observation, modules_commands)
+        DownloadObservationCommand.__init__(self, params, observation, modules_commands)
         self.__json_id = "waterfall"
 
     def download(self):

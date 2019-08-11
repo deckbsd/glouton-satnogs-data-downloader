@@ -1,10 +1,10 @@
-from glouton.modules.moduleBase import ModuleBase
+from glouton.modules.observationModuleBase import ObservationModuleBase
 from time import strftime, strptime
 from datetime import datetime
 
 # This module writes out decoded telemetry frames in the same format
 # provided by the telemetry download option on db.satnogs.org.
-class CSV(ModuleBase):
+class CSV(ObservationModuleBase):
 
     def runAfterDownload(self, file_name, full_path, observation):
         csv_file = full_path + '/' + file_name + '.csv'

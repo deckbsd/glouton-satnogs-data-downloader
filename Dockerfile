@@ -1,11 +1,10 @@
 FROM python:3
 WORKDIR /glouton
 
-# Install app dependencies
-COPY requirements.txt ./
-
-RUN pip install -r requirements.txt
-
 # Bundle app source
 COPY . .
+
+# Install glouton module
+RUN python3 setup.py install
+
 CMD "/bin/bash"

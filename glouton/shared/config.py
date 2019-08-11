@@ -1,4 +1,5 @@
 import os
+import sys
 import json
 
 def read():
@@ -15,13 +16,13 @@ def read():
                     "WATERFALL": [],
                     "DEMODDATA": [],
                     "FRAME": [],
-                    "FORALL": []
+                    "FOR_ALL_OBSERVATION": []
                 },
                 "LOGFILE": "glouton.log"
             }
     try:
-        if os.path.exists(os.getcwd() + "/../glouton/config.json"):
-            with open(os.getcwd() + "/../glouton/config.json", 'r') as f:
+        if os.path.exists(os.path.dirname(sys.argv[0]) + "/../glouton/config.json"):
+            with open(os.path.dirname(sys.argv[0]) + "/../glouton/config.json", 'r') as f:
                 config = json.load(f)
         else:
             config = default_config

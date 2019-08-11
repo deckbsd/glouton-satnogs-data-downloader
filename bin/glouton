@@ -3,6 +3,7 @@
 from datetime import datetime
 
 from glouton.services.observation.observationsService import ObservationsService
+from glouton.services.telemetry.telemetryService import TelemetryService
 from glouton.services.session.sessionService import SessionService
 from glouton.domain.parameters.programCmd import ProgramCmd
 from glouton.shared.logger import logger
@@ -15,7 +16,7 @@ def glouton():
     print("""          .---.   '   _    \                  '   _    \              """)
     print("""          |   | /   /` '.   \               /   /` '.   \    _..._    """)
     print("""  .--./)  |   |.   |     \  '              .   |     \  '  .'     '.  """)
-    print(""" /.''\\   |   ||   '      |  '          .| |   '      |  '.   .-.   . """)
+    print("""  /.''\\   |   ||   '      |  '          .| |   '      |  '.   .-.   . """)
     print("""| |  | |  |   |\    \     / /         .' |_\    \     / / |  '   '  | """)
     print(""" \`-' /   |   | `.   ` ..' /_    _  .'     |`.   ` ..' /  |  |   |  | """)
     print(""" /("'`    |   |    '-...-'`| '  / |'--.  .-'   '-...-'`   |  |   |  | """)
@@ -61,17 +62,31 @@ if __name__ == "__main__":
                             help='download waterfall data')
         parser.add_argument('--demoddata', '-d', dest='download_demoddata', default=False, action="store_true",
                             help='download demod data')
-        parser.add_argument('--demodm', dest='demoddata_modules', default=None,
-                            help='list of the modules to use while downloading demoddata separated by a ,')
-        parser.add_argument('--payloadm', dest='payload_modules', default=None,
-                            help='list of the modules to use while downloading demoddata separated by a ,')
-        parser.add_argument('--waterfallm', dest='waterfall_modules', default=None,
-                            help='list of the modules to use while downloading waterfall separated by a ,')
+        parser.add_argument('--demod-module', dest='demoddata_modules', default=None,
+                            help='list of the modules to use while downloading demoddata(s) separated by a ,')
+        parser.add_argument('--payload-module', dest='payload_modules', default=None,
+                            help='list of the modules to use while downloading payload(s) separated by a ,')
+        parser.add_argument('--waterfall-module', dest='waterfall_modules', default=None,
+                            help='list of the modules to use while downloading waterfall(s) separated by a ,')
         parser.add_argument('--last', dest='last', action='store_true',
                             help='restart a download from the last command line.')
         # DB API parameters :
         parser.add_argument('--db', dest='db', action='store_true', default=False,
                             help='download data from satnogs db api')
+        parser.add_argument('--frame-module', dest='frame_modules', default=None, required='--db' in sys.argv,
+                            help='list of the modules to use while downloading frame(s) separated by a ,')
+        parser.add_argument('--transmitter', dest='transmitter', default=None,
+                            help='transmitter filter')
+        parser.add_argument('--app-source', dest='app_source', default=None,
+                            help='app source filter')
+        parser.add_argument('--observer', dest='observer', default=None,
+                            help='observer filter')
+                            
+        #DB API temporary parameters
+        parser.add_argument('--page-from', dest='page_from', default=None, required='--db' in sys.argv,
+                            help='set the page from which the frame download will begin')
+        parser.add_argument('--page-to', dest='page_to', default=None, required='--db' in sys.argv,
+                            help='set the end page of the frame downloading')
         args = parser.parse_args()
         session = SessionService()
         if args.last is True:
@@ -82,12 +97,15 @@ if __name__ == "__main__":
             payload_modules = None
             demoddata_modules = None
             waterfall_modules = None
+            frame_modules = None
             if args.payload_modules is not None:
                 payload_modules = args.payload_modules.split(',')
             if args.demoddata_modules is not None:
                 demoddata_modules = args.demoddata_modules.split(',')
             if args.waterfall_modules is not None:
                 waterfall_modules = args.waterfall_modules.split(',')
+            if args.frame_modules is not None:
+                frame_modules = args.frame_modules.split(',')
             cmd = ProgramCmd(args.norad_id,
             args.ground_station_id,
             start_date,
@@ -103,12 +121,21 @@ if __name__ == "__main__":
             args.user_id,
             args.transmitter_uuid,
             args.transmitter_mode,
-            args.transmitter_type)
+            args.transmitter_type,
+            frame_modules,
+            args.observer,
+            args.app_source,
+            args.transmitter,
+            args.page_from,
+            args.page_to)
             session.save_program_parameters(cmd)
 
         if args.db is False:
             obs = ObservationsService(cmd)
             obs.extract()
+        else:
+            tlm = TelemetryService(cmd)
+            tlm.extract()
 
         logger.Info("\n\nall jobs are finished\t(   ^ o^)\m/")
     except KeyboardInterrupt:
