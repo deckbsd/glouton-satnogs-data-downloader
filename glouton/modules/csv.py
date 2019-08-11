@@ -9,10 +9,14 @@ class CSV(ObservationModuleBase):
     def runAfterDownload(self, file_name, full_path, observation):
         csv_file = full_path + '/' + file_name + '.csv'
 
-        # FIXME: The date format appears to be RFC 3339; haven't found
-        # a better way of parsing this than this format string, which
-        # assumes that it'll end in Z.
-        dobj = datetime.strptime(observation['start'], '%Y-%m-%dT%H:%M:%SZ')
+        # extract timestamp from binary frame file name
+        # the filename consists of three parts:
+        # data_843421_2019-07-20T13-21-51
+        # 1. prefix "data"
+        # 2. observation id
+        # 3. timestamp of the recorded frame in UTC
+        # after the split the array index [2] contains the timestamp
+        dobj = datetime.strptime(file_name.split('_')[2], '%Y-%m-%dT%H-%M-%S')
         obs_time = dobj.strftime('%Y-%m-%d %H:%M:%S')
 
         with open(full_path + '/' + file_name, 'rb') as f:

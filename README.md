@@ -1,11 +1,17 @@
 [![Known Vulnerabilities](https://snyk.io/test/github/deckbsd/glouton-satnogs-data-downloader/badge.svg)](https://snyk.io/test/github/deckbsd/glouton-satnogs-data-downloader)
+[![Docker Build](https://img.shields.io/docker/build/deckbsd/glouton-satnogs-data-downloader)](https://hub.docker.com/r/deckbsd/glouton-satnogs-data-downloader/)
 # glouton-satnogs-data-downloader
 This cli app is a downloader for the data provided by the satnogs network.
 
 Installation :
 -------
 ```
+git clone https://github.com/deckbsd/glouton-satnogs-data-downloader.git
 python ./setup.py install
+```
+or
+```
+pip install glouton
 ```
 
 Usage :
@@ -45,8 +51,8 @@ Actual features :
 
 Future :
 -------
+    * download data from satnogs db (dev ongoing)
     * automatic mode for downloading automatically the new observations of one or more satellites.
-    * download data from satnogs db
 
 Modules :
 -------
@@ -69,10 +75,14 @@ class TestModule(ModuleBase):
 Here is a exemple of a command you have to use to trigger the TestModule after each waterfall download :
 
 ```
--s 2017-05-20T00:51:54 -e 2017-09-20T00:51:54 -n 25338 --waterfallm TestModule,TestModule
+-s 2017-05-20T00:51:54 -e 2017-09-20T00:51:54 -n 25338 --waterfallm TestModule,AnotherModule
 ```
 Docker :
 -------
 Glouton has a docker image that you can download [here on the docker hub](https://hub.docker.com/r/deckbsd/glouton-satnogs-data-downloader/).
 
 All ideas or contributions are welcome. Feel free to use the [issues](https://github.com/deckbsd/glouton-satnogs-data-downloader/issues) tab :-)
+
+License :
+-------
+[![license](https://img.shields.io/github/license/deckbsd/glouton-satnogs-data-downloader)](LICENSE)
