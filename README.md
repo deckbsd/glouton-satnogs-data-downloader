@@ -84,7 +84,7 @@ Here is a very simple example for a module used on the satnogs network data (thi
 ```
 from glouton.modules.observationModuleBase import ObservationModuleBase
 
-class TestModule(ObservationModuleBaseModuleBase):
+class TestModule(ObservationModuleBase):
 
     def runAfterDownload(self, file_name, full_path, observation):
         print('executed after ' +  file_name)
