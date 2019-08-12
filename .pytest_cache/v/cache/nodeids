@@ -6,5 +6,6 @@
   "test/test_observation_service.py::test_loading_only_Demoddata_repository_types",
   "test/test_observation_service.py::test_loading_only_Payload_Demoddata_repository_types",
   "test/test_observation_service.py::test_loading_only_Waterfall_Demoddata_repository_types",
-  "test/test_observation_service.py::test_default_loading_repository"
+  "test/test_observation_service.py::test_default_loading_repository",
+  "test/test_telemetry_service.py::test_loading_all_repository_types"
 ]
