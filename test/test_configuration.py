@@ -13,7 +13,7 @@ default_config = {
                     "WATERFALL": [],
                     "DEMODDATA": [],
                     "FRAME": [],
-                    "FORALL": []
+                    "FOR_ALL_OBSERVATION": []
                 },
                 "LOGFILE": "glouton.log"
             }
