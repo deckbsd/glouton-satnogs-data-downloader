@@ -90,7 +90,7 @@ class TestModule(ObservationModuleBaseModuleBase):
         print('executed after ' +  file_name)
 ```
 
-Here is a very simple example for a module used on the satnogs db data (this module is in the sources) :
+Here is another example for a module used on the satnogs db data :
 ```
 from glouton.modules.telemetryModuleBase import TelemetryModuleBase
 
