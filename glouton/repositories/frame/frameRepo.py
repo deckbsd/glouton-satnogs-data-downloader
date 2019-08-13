@@ -16,9 +16,9 @@ class FrameRepo(Downloadable):
         self.__modules = modules
         self.__download_status = Event()
 
-    def register_command(self, telemetry, start_date, end_date):
+    def register_command(self, telemetry, page_from, page_to):
         cmd_parameters = DownloadCommandParams(
-            self.__working_dir, self.__create_dir_name('frames', start_date, end_date), self.__modules)
+            self.__working_dir, self.__create_dir_name('frames', page_from, page_to), self.__modules)
         waterfallDownloadCommand = FrameDownloadCommand(
             cmd_parameters, telemetry, self.__frame_modules_commands)
         self.__frame_commands.put(waterfallDownloadCommand)
@@ -33,5 +33,5 @@ class FrameRepo(Downloadable):
 
         return threads
 
-    def __create_dir_name(self, target, start_date, end_date):
-        return target + '__' + start_date.strftime('%m-%d-%YT%H-%M-%S') + '__' + end_date.strftime('%m-%d-%YT%H-%M-%S')
+    def __create_dir_name(self, target, page_from, page_to):
+        return target + '__page__' + page_from + '__to__' + page_to

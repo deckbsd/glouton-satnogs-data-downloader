@@ -14,7 +14,7 @@ class TelemetryRepo:
     def extract(self):
         params = self.__create_request_params()
         limit = int(self.__cmd.page_to)
-        page = 1
+        page = int(self.__cmd.page_from)
         while True:
             r = self.__client.get_from_base(
                 self.TELEMETRY_URL, params)
@@ -22,7 +22,7 @@ class TelemetryRepo:
                 break
 
             logger.Info('scanning page...' + params['page'])
-            self.__read_page(r.json(), self.__cmd.start_date, self.__cmd.end_date)
+            self.__read_page(r.json(), self.__cmd.page_from, self.__cmd.page_to)
             page += 1
             if page > limit:
                 break
@@ -48,16 +48,16 @@ class TelemetryRepo:
 
         return False
 
-    def __read_page(self, telemetries, start_date, end_date):
+    def __read_page(self, telemetries, page_from, page_to):
         for telemetry in telemetries:
             for repo in self.__repos:
                 repo.register_command(
-                    telemetry, start_date, end_date)
+                    telemetry, page_from, page_to)
 
     def __create_request_params(self):
         return {'satellite': self.__cmd.norad_id,
-        'start': self.__cmd.start_date.isoformat(),
-        'end': self.__cmd.end_date.isoformat(),
+        #'start': self.__cmd.start_date.isoformat(),
+        #'end': self.__cmd.end_date.isoformat(),
         'observer': self.__cmd.observer,
         'transmitter': self.__cmd.transmitter,
         'app_source': self.__cmd.app_source,
