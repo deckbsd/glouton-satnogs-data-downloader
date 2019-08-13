@@ -34,9 +34,9 @@ python ./bin/glouton -s 2019-05-09T00:51:54 -e 2019-05-30T00:51:54 -n 40069 --wa
 
 Examples for downloading data from the satnogs DB
 
-simple command example for downloading frames for the satellite with the norad id 43466 from the page 1 to 100 : 
+simple command example for downloading frames for the satellite with the norad id 43466 from the page 1 to 100 and apply the process within the SomeModule module (You have to provide a module when you download the frames): 
 ```
-python ./bin/glouton --db -n 43466 --page-from 1 --page-to 100
+python ./bin/glouton --db -n 43466 --page-from 1 --page-to 100 --frame-module SomeModule
 ```
 
 Actual features :
@@ -114,7 +114,7 @@ The config.json file into the glouton folder provides to you the possibilities t
 Important note regarding satnogs db :
 -------
 
-At this time, the satnogs db team didn't push in production the change i made to add the start and end dates filters. So for now, to download data from satnogs db we have to use the page-from and page-to filters. When the changes will be pushed into production, i 'll remove those page filters and replace it by dates filters.
+At this time, the satnogs db team didn't push in production the change i made to add the start and end dates filters. So for now, to download data from satnogs db we have to use the page-from and page-to filters. When the changes will be pushed into production, i 'll remove those page filters and replace it by dates filters. It's the same situation about the observer, app_source, tranmitter filters.
 
 Docker :
 -------
