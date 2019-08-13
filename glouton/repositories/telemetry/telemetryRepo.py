@@ -34,8 +34,7 @@ class TelemetryRepo:
 
     def __create_workers_and_wait(self):
         for repo in self.__repos:
-            for i in range(1, 3):
-                self.__threads.extend(repo.create_worker())
+            self.__threads.extend(repo.create_worker())
         while self.__is_one_thread_alive():
             for t in self.__threads:
                 # let's control to main thread every seconds (in order to be able to capture Ctrl + C if needed)
