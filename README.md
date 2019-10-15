@@ -40,9 +40,7 @@ Here is an example of how to use the glouton Pypi package :
                               frame_modules=None,
                               observer=None,
                               app_source=None,
-                              transmitter=None,
-                              page_from=None,
-                              page_to=None)
+                              transmitter=None)
 
     try:
         obs = ObservationsService(glouton_conf)
