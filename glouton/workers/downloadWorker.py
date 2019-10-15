@@ -1,5 +1,6 @@
 from glouton.shared.logger import logger
 
+
 class DownloadWorker:
     def __init__(self, queue, download_status):
         self._commands = queue
@@ -7,7 +8,7 @@ class DownloadWorker:
 
     def execute(self):
         self.__download_status.set()
-        try:       
+        try:
             while self._commands.empty() == False:
                 command = self._commands.get()
                 command.download()

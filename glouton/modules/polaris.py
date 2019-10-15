@@ -31,12 +31,12 @@ class Polaris(TelemetryModuleBase):
                     "frame": frame
                 }]}
 
-            json_telemetry = json.dumps(telemetry_obj)
+            json_telemetry = json.dumps(telemetry_obj, indent=4)
             with open(json_file, 'w') as f:
                 f.write(json_telemetry)
 
             self.count += 1
             print('Timestamp ' + timestamp + ' Frame ' +
-                frame + ' count ' + str(self.count))
+                  frame + ' count ' + str(self.count))
         except Exception as ex:
             logger.Error(ex)

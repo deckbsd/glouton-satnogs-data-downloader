@@ -1,27 +1,25 @@
 class ProgramCmd:
     def __init__(self,
-    norad_id,
-    ground_station_id,
-    start_date,
-    end_date,
-    observation_status,
-    working_dir,
-    payloads,
-    waterfalls,
-    demoddata,
-    payload_modules,
-    demoddata_modules,
-    waterfall_modules,
-    user,
-    transmitter_uuid,
-    transmitter_mode,
-    transmitter_type,
-    frame_modules,
-    observer,
-    app_source,
-    transmitter,
-    page_from,
-    page_to):
+                 norad_id,
+                 ground_station_id,
+                 start_date,
+                 end_date,
+                 observation_status,
+                 working_dir,
+                 payloads,
+                 waterfalls,
+                 demoddata,
+                 payload_modules,
+                 demoddata_modules,
+                 waterfall_modules,
+                 user,
+                 transmitter_uuid,
+                 transmitter_mode,
+                 transmitter_type,
+                 frame_modules,
+                 observer,
+                 app_source,
+                 transmitter):
         self.norad_id = norad_id
         self.ground_station_id = ground_station_id
         self.start_date = start_date
@@ -42,5 +40,3 @@ class ProgramCmd:
         self.observer = observer
         self.app_source = app_source
         self.transmitter = transmitter
-        self.page_from = page_from
-        self.page_to = page_to

@@ -1,7 +1,6 @@
 #!/usr/bin/python
 
 from datetime import datetime
-
 from glouton.services.observation.observationsService import ObservationsService
 from glouton.services.telemetry.telemetryService import TelemetryService
 from glouton.services.session.sessionService import SessionService
@@ -19,7 +18,8 @@ def glouton():
     print("""  /.''\\   |   ||   '      |  '          .| |   '      |  '.   .-.   . """)
     print("""| |  | |  |   |\    \     / /         .' |_\    \     / / |  '   '  | """)
     print(""" \`-' /   |   | `.   ` ..' /_    _  .'     |`.   ` ..' /  |  |   |  | """)
-    print(""" /("'`    |   |    '-...-'`| '  / |'--.  .-'   '-...-'`   |  |   |  | """)
+    print(
+        """ /("'`    |   |    '-...-'`| '  / |'--.  .-'   '-...-'`   |  |   |  | """)
     print(""" \ '---.  |   |           .' | .' |   |  |                |  |   |  | """)
     print("""  /'""'.\ |   |           /  | /  |   |  |                |  |   |  | """)
     print(""" ||     ||'---'          |   `'.  |   |  '.'              |  |   |  | """)
@@ -40,9 +40,9 @@ if __name__ == "__main__":
                             help='the ground station id')
         parser.add_argument('--status', '-t', dest='status',
                             help='the Observation status (good, bad, unknown, failed')
-        parser.add_argument('--sdate', '-s', dest='start_date', required='--last' not in sys.argv and '--db' not in sys.argv,
+        parser.add_argument('--sdate', '-s', dest='start_date', required='--last' not in sys.argv,
                             help='start date (ex: 2018-01-20T00:51:54)')
-        parser.add_argument('--edate', '-e', dest='end_date', required='--last' not in sys.argv and '--db' not in sys.argv,
+        parser.add_argument('--edate', '-e', dest='end_date', required='--last' not in sys.argv,
                             help='end date (ex: 2018-01-21T00:51:54)')
         parser.add_argument('--user', '-u', dest='user_id',
                             help='the user id')
@@ -81,25 +81,22 @@ if __name__ == "__main__":
                             help='app source filter')
         parser.add_argument('--observer', dest='observer', default=None,
                             help='observer filter')
-                            
-        #DB API temporary parameters
-        parser.add_argument('--page-from', dest='page_from', default=None, required='--db' in sys.argv,
-                            help='set the page from which the frame download will begin')
-        parser.add_argument('--page-to', dest='page_to', default=None, required='--db' in sys.argv,
-                            help='set the end page of the frame downloading')
+
         args = parser.parse_args()
         session = SessionService()
         start_date = None
         end_date = None
         if args.last is True:
             cmd = session.load_last_program_parameters()
-        else :
+        else:
             if args.start_date is not None:
-                start_date = datetime.strptime(args.start_date, '%Y-%m-%dT%H:%M:%S')
-                
+                start_date = datetime.strptime(
+                    args.start_date, '%Y-%m-%dT%H:%M:%S')
+
             if args.end_date is not None:
-                end_date = datetime.strptime(args.end_date, '%Y-%m-%dT%H:%M:%S')
-                
+                end_date = datetime.strptime(
+                    args.end_date, '%Y-%m-%dT%H:%M:%S')
+
             payload_modules = None
             demoddata_modules = None
             waterfall_modules = None
@@ -113,27 +110,25 @@ if __name__ == "__main__":
             if args.frame_modules is not None:
                 frame_modules = args.frame_modules.split(',')
             cmd = ProgramCmd(args.norad_id,
-            args.ground_station_id,
-            start_date,
-            end_date,
-            args.status,
-            args.working_dir,
-            args.download_payload,
-            args.download_waterfall,
-            args.download_demoddata,
-            payload_modules,
-            demoddata_modules,
-            waterfall_modules,
-            args.user_id,
-            args.transmitter_uuid,
-            args.transmitter_mode,
-            args.transmitter_type,
-            frame_modules,
-            args.observer,
-            args.app_source,
-            args.transmitter,
-            args.page_from,
-            args.page_to)
+                             args.ground_station_id,
+                             start_date,
+                             end_date,
+                             args.status,
+                             args.working_dir,
+                             args.download_payload,
+                             args.download_waterfall,
+                             args.download_demoddata,
+                             payload_modules,
+                             demoddata_modules,
+                             waterfall_modules,
+                             args.user_id,
+                             args.transmitter_uuid,
+                             args.transmitter_mode,
+                             args.transmitter_type,
+                             frame_modules,
+                             args.observer,
+                             args.app_source,
+                             args.transmitter)
             session.save_program_parameters(cmd)
 
         if args.db is False:

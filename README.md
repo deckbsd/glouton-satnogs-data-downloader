@@ -10,9 +10,42 @@ git clone https://github.com/deckbsd/glouton-satnogs-data-downloader.git
 cd glouton-satnogs-data-downloader
 python ./setup.py install
 ```
-or
+or if you want to use it as a package:
 ```
 pip install glouton
+```
+
+Here is an example of how to use the glouton package :
+```
+    glouton_conf = ProgramCmd(norad_id=norad_id,
+                              ground_station_id=None,
+                              start_date=start_date,
+                              end_date=end_date,
+                              observation_status=None,
+                              working_dir="/tmp",
+                              payloads=False,
+                              waterfalls=False,
+                              demoddata=True,
+                              payload_modules=None,
+                              demoddata_modules=["CSV"],
+                              waterfall_modules=None,
+                              user=None,
+                              transmitter_uuid=None,
+                              transmitter_mode=None,
+                              transmitter_type=None,
+                              frame_modules=None,
+                              observer=None,
+                              app_source=None,
+                              transmitter=None,
+                              page_from=None,
+                              page_to=None)
+
+    # Running glouton data collection
+    try:
+        obs = ObservationsService(glouton_conf)
+        obs.extract()
+    except Exception as eee:  # pylint: disable=W0703
+        LOGGER.error("data collection: %s", eee)
 ```
 
 Usage :
@@ -58,8 +91,8 @@ Actual features :
             * vetted user
         * satnogs db
             * norad id
-            * page from
-            * page to
+            * start date
+            * end date
             * observer
             * app_source
             * tranmitter
@@ -110,11 +143,6 @@ Configuration file :
 -------
 
 The config.json file into the glouton folder provides to you the possibilities to configure a proxy if you need it and also to add the modules you want to run permanently.
-
-Important note regarding satnogs db :
--------
-
-At this time, the satnogs db team didn't push in production the change i made to add the start and end dates filters. So for now, to download data from satnogs db we have to use the page-from and page-to filters. When the changes will be pushed into production, i 'll remove those page filters and replace it by dates filters. It's the same situation about the observer, app_source, tranmitter filters.
 
 Docker :
 -------

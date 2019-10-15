@@ -4,6 +4,7 @@ from glouton.commands.module.telemetryModuleCommandParams import TelemetryModule
 from glouton.commands.module.telemetryModuleCommand import TelemetryModuleCommand
 import os
 
+
 class DownloadTelemetryCommand(DownloadCommand):
     def __init__(self, params, telemetry, modules_commands):
         DownloadCommand.__init__(self, params, modules_commands)
