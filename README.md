@@ -15,8 +15,12 @@ or if you want to use it as a package:
 pip install glouton
 ```
 
-Here is an example of how to use the glouton package :
+Here is an example of how to use the glouton Pypi package :
 ```
+    from glouton.domain.parameters.programCmd import ProgramCmd
+    from glouton.services.observation.observationsService import \
+    ObservationsService
+
     glouton_conf = ProgramCmd(norad_id=norad_id,
                               ground_station_id=None,
                               start_date=start_date,
@@ -40,11 +44,10 @@ Here is an example of how to use the glouton package :
                               page_from=None,
                               page_to=None)
 
-    # Running glouton data collection
     try:
         obs = ObservationsService(glouton_conf)
         obs.extract()
-    except Exception as eee:  # pylint: disable=W0703
+    except Exception as eee:
         LOGGER.error("data collection: %s", eee)
 ```
 
@@ -67,9 +70,9 @@ python ./bin/glouton -s 2019-05-09T00:51:54 -e 2019-05-30T00:51:54 -n 40069 --wa
 
 Examples for downloading data from the satnogs DB
 
-simple command example for downloading frames for the satellite with the norad id 43466 from the page 1 to 100 and apply the process within the SomeModule module (You have to provide a module when you download the frames): 
+simple command example for downloading frames for the satellite with the norad id 40014 and apply the process within the SomeModule module (You have to provide a module when you download the frames): 
 ```
-python ./bin/glouton --db -n 43466 --page-from 1 --page-to 100 --frame-module SomeModule
+python ./bin/glouton --db -n --norad 40014 -s 2019-10-01T00:51:54 -e 2019-10-02T22:00:01 --db --frame-module SomeModule
 ```
 
 Actual features :
