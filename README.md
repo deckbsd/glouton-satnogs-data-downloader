@@ -15,8 +15,12 @@ or if you want to use it as a package:
 pip install glouton
 ```
 
-Here is an example of how to use the glouton package :
+Here is an example of how to use the glouton Pypi package :
 ```
+    from glouton.domain.parameters.programCmd import ProgramCmd
+    from glouton.services.observation.observationsService import \
+    ObservationsService
+
     glouton_conf = ProgramCmd(norad_id=norad_id,
                               ground_station_id=None,
                               start_date=start_date,
@@ -40,11 +44,10 @@ Here is an example of how to use the glouton package :
                               page_from=None,
                               page_to=None)
 
-    # Running glouton data collection
     try:
         obs = ObservationsService(glouton_conf)
         obs.extract()
-    except Exception as eee:  # pylint: disable=W0703
+    except Exception as eee:
         LOGGER.error("data collection: %s", eee)
 ```
 
