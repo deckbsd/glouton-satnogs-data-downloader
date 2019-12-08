@@ -28,4 +28,5 @@ class Logger:
         print(warning)
         logging.warning(warning)
 
+
 logger = Logger()

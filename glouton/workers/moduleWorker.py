@@ -6,7 +6,7 @@ class ModuleWorker:
     def execute(self):
         while self.__commands.empty() == False or self.__download_status.isSet():
             try:
-                command = self.__commands.get(block=True, timeout= 1)
+                command = self.__commands.get(block=True, timeout=1)
                 command.process()
                 self.__commands.task_done()
             except:

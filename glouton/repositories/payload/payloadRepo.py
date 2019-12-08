@@ -8,6 +8,7 @@ from glouton.domain.interfaces.downloadable import Downloadable
 from glouton.shared import threadHelper
 from threading import Event
 
+
 class PayloadRepo(Downloadable):
     def __init__(self, working_dir, modules):
         self.__working_dir = working_dir
@@ -25,10 +26,12 @@ class PayloadRepo(Downloadable):
 
     def create_worker(self):
         threads = []
-        downloadWorker = DownloadWorker(self.__payload_commands, self.__download_status)
+        downloadWorker = DownloadWorker(
+            self.__payload_commands, self.__download_status)
         threads.append(threadHelper.create_thread(downloadWorker.execute))
         if self.__modules is not None:
-            moduleWorker = ModuleWorker(self.__payload_modules_commands, self.__download_status)
+            moduleWorker = ModuleWorker(
+                self.__payload_modules_commands, self.__download_status)
             threads.append(threadHelper.create_thread(moduleWorker.execute))
 
         return threads

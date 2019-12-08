@@ -5,7 +5,7 @@ import requests
 
 class SatnogClient:
     def __init__(self):
-        self.config  = config.read()
+        self.config = config.read()
         self.proxies = self._set_proxy()
 
     def _set_proxy(self):

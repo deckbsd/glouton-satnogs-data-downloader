@@ -1,5 +1,6 @@
 import pickle
 
+
 class SessionService:
     def __init__(self):
         self.SESSION_FILENAME = ".session"
