@@ -51,6 +51,10 @@ Here is an example of how to use the glouton Pypi package :
 
 Usage :
 -------
+
+If you plan to download data from satnogs DB, you will have to register yourself on [https://db.satnogs.org](https://db.satnogs.org) in order to get an API key.
+Than you can add this key to the config file of glouton (/glouton/config.json)
+
 Examples for downloading data from the satnogs network
 
 simple command example for downloading : 

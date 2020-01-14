@@ -9,7 +9,7 @@ class SatnogDbClient(SatnogClient):
         self._url = self.config['DEFAULT']['DB_API_URL']
 
     def get(self, url, params=None):
-        return requests.get(url, params=params, proxies=self.proxies)
+        return requests.get(url, params=params, proxies=self.proxies, headers=self.header)
 
     def get_from_base(self, url, params=None):
-        return requests.get(self._url + url, params=params, proxies=self.proxies)
+        return requests.get(self._url + url, params=params, proxies=self.proxies, headers=self.header)

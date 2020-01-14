@@ -5,6 +5,7 @@ default_config = {
                 "DEFAULT": {
                     "NETWORK_API_URL": "https://network.satnogs.org/api/",
                     "DB_API_URL": "https://db.satnogs.org/api/",
+                    "DB_API_KEY": "",
                     "HTTPS_PROXY": "",
                     "HTTP_PROXY": ""
                 },

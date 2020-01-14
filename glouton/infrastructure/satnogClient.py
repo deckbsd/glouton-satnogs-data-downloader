@@ -7,6 +7,7 @@ class SatnogClient:
     def __init__(self):
         self.config = config.read()
         self.proxies = self._set_proxy()
+        self.header = self._get_authorization_header()
 
     def _set_proxy(self):
         proxies = None
@@ -23,6 +24,10 @@ class SatnogClient:
             }
 
         return proxies
+
+    def _get_authorization_header(self):
+        token = self.config['DEFAULT']['DB_API_KEY']
+        return {'Authorization': 'Token ' + token}
 
     def get(self, url, params=None):
         raise NotImplementedError()
