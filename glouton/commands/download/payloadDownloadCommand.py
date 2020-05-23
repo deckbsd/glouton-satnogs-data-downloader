@@ -9,12 +9,12 @@ import requests
 class PayloadDownloadCommand(DownloadObservationCommand):
     def __init__(self, params, observation, modules_commands):
         DownloadObservationCommand.__init__(self, params, observation, modules_commands)
-        self.__json_id = "payload"
+        self.__json_id = "archive_url"
 
     def download(self):
         url = self.observation[self.__json_id]
         if not url:
-            logger.Info('no payload found for the observation ' + str(self.observation['id']) + ' of ' + self.observation['start'])
+            logger.Info('no archive found for the observation ' + str(self.observation['id']) + ' of ' + self.observation['start'])
             return
 
         fileHelper.create_dir_if_not_exist(self.full_path)

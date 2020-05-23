@@ -56,16 +56,16 @@ if __name__ == "__main__":
                             help='the working directory')
         parser.add_argument('--auto', '-a', dest='auto',
                             help='download new sat data automatically (not implemented yet!)')
-        parser.add_argument('--payload', '-p', dest='download_payload', default=False, action="store_true",
-                            help='download payload data')
+        parser.add_argument('--archive', '-p', dest='download_archive', default=False, action="store_true",
+                            help='download archive data')
         parser.add_argument('--waterfall', '-f', dest='download_waterfall', default=False, action="store_true",
                             help='download waterfall data')
         parser.add_argument('--demoddata', '-d', dest='download_demoddata', default=False, action="store_true",
                             help='download demod data')
         parser.add_argument('--demod-module', dest='demoddata_modules', default=None,
                             help='list of the modules to use while downloading demoddata(s) separated by a ,')
-        parser.add_argument('--payload-module', dest='payload_modules', default=None,
-                            help='list of the modules to use while downloading payload(s) separated by a ,')
+        parser.add_argument('--archive-module', dest='archive_modules', default=None,
+                            help='list of the modules to use while downloading archive(s) separated by a ,')
         parser.add_argument('--waterfall-module', dest='waterfall_modules', default=None,
                             help='list of the modules to use while downloading waterfall(s) separated by a ,')
         parser.add_argument('--last', dest='last', action='store_true',
@@ -97,12 +97,12 @@ if __name__ == "__main__":
                 end_date = datetime.strptime(
                     args.end_date, '%Y-%m-%dT%H:%M:%S')
 
-            payload_modules = None
+            archive_modules = None
             demoddata_modules = None
             waterfall_modules = None
             frame_modules = None
-            if args.payload_modules is not None:
-                payload_modules = args.payload_modules.split(',')
+            if args.archive_modules is not None:
+                archive_modules = args.archive_modules.split(',')
             if args.demoddata_modules is not None:
                 demoddata_modules = args.demoddata_modules.split(',')
             if args.waterfall_modules is not None:
@@ -115,10 +115,10 @@ if __name__ == "__main__":
                              end_date,
                              args.status,
                              args.working_dir,
-                             args.download_payload,
+                             args.download_archive,
                              args.download_waterfall,
                              args.download_demoddata,
-                             payload_modules,
+                             archive_modules,
                              demoddata_modules,
                              waterfall_modules,
                              args.user_id,

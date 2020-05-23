@@ -19,7 +19,7 @@ class PayloadRepo(Downloadable):
 
     def register_command(self, observation, start_date, end_date):
         cmd_parameters = DownloadCommandParams(
-            self.__working_dir, self.__create_dir_name('payload', start_date, end_date), self.__modules)
+            self.__working_dir, self.__create_dir_name('archive', start_date, end_date), self.__modules)
         waterfallDownloadCommand = PayloadDownloadCommand(
             cmd_parameters, observation, self.__payload_modules_commands)
         self.__payload_commands.put(waterfallDownloadCommand)

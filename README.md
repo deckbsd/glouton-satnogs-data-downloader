@@ -61,9 +61,9 @@ simple command example for downloading :
 ```
 python ./bin/glouton -s 2018-01-20T00:51:54 -e 2018-01-21T00:51:54 -n 28654
 ```
-command example if you just want the payload files :
+command example if you just want the archive files :
 ```
-python ./bin/glouton -s 2018-01-20T00:51:54 -e 2018-01-21T00:51:54 -n 28654 --payload
+python ./bin/glouton -s 2018-01-20T00:51:54 -e 2018-01-21T00:51:54 -n 28654 --archive
 ```
 command example if you want all data type from specific transmitter type, mode and uuid and apply module processing on waterfall :
 ```
@@ -81,7 +81,7 @@ Actual features :
 -------
     * download data from satnogs db
     * waterfall downloading
-    * payload downloading
+    * archive downloading (formerly payload downloading)
     * filters :
         * satnogs network
             * norad id

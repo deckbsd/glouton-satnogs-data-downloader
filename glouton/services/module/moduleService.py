@@ -18,7 +18,7 @@ class ModuleService:
         return self.__loadModule(self.__cmd.demoddata_modules)
 
     def loadPayloadModules(self):
-        logger.Info('Payload module(s) loading :')
+        logger.Info('Archive module(s) loading :')
         self.__cmd.payload_modules = self.__getModulesFromConfig(
             self.__cmd.payload_modules, 'PAYLOAD')
         self.__cmd.payload_modules = self.__getModulesFromConfig(
