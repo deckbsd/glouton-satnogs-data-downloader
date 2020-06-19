@@ -6,10 +6,10 @@ class ProgramCmd:
                  end_date,
                  observation_status,
                  working_dir,
-                 payloads,
+                 archives,
                  waterfalls,
                  demoddata,
-                 payload_modules,
+                 archive_modules,
                  demoddata_modules,
                  waterfall_modules,
                  user,
@@ -25,10 +25,10 @@ class ProgramCmd:
         self.start_date = start_date
         self.end_date = end_date
         self.working_dir = working_dir
-        self.payloads = payloads
+        self.archives = archives
         self.waterfalls = waterfalls
         self.demoddata = demoddata
-        self.payload_modules = payload_modules
+        self.archive_modules = archive_modules
         self.demoddata_modules = demoddata_modules
         self.waterfall_modules = waterfall_modules
         self.observation_status = observation_status

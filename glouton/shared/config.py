@@ -14,7 +14,7 @@ def read():
             "HTTP_PROXY": ""
         },
         "MODULES": {
-            "PAYLOAD": [],
+            "ARCHIVE": [],
             "WATERFALL": [],
             "DEMODDATA": [],
             "FRAME": [],

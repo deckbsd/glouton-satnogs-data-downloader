@@ -6,7 +6,7 @@ import ntpath
 import requests
 
 
-class PayloadDownloadCommand(DownloadObservationCommand):
+class ArchiveDownloadCommand(DownloadObservationCommand):
     def __init__(self, params, observation, modules_commands):
         DownloadObservationCommand.__init__(self, params, observation, modules_commands)
         self.__json_id = "archive_url"
@@ -26,7 +26,7 @@ class PayloadDownloadCommand(DownloadObservationCommand):
             
         r = self.client.get(url)
         if r.status_code == 200:
-            logger.Info('downloading...' + file_name)
+            logger.Info('downloading archive...' + file_name)
             with open(full_path_file, "wb") as file:
                 file.write(r.content)
             self.runModulesAfterDownload(file_name)

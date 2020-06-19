@@ -17,14 +17,14 @@ class ModuleService:
 
         return self.__loadModule(self.__cmd.demoddata_modules)
 
-    def loadPayloadModules(self):
+    def loadArchiveModules(self):
         logger.Info('Archive module(s) loading :')
-        self.__cmd.payload_modules = self.__getModulesFromConfig(
-            self.__cmd.payload_modules, 'PAYLOAD')
-        self.__cmd.payload_modules = self.__getModulesFromConfig(
-            self.__cmd.payload_modules, 'FOR_ALL_OBSERVATION')
+        self.__cmd.archive_modules = self.__getModulesFromConfig(
+            self.__cmd.archive_modules, 'ARCHIVE')
+        self.__cmd.archive_modules = self.__getModulesFromConfig(
+            self.__cmd.archive_modules, 'FOR_ALL_OBSERVATION')
 
-        return self.__loadModule(self.__cmd.payload_modules)
+        return self.__loadModule(self.__cmd.archive_modules)
 
     def loadWaterfallModules(self):
         logger.Info('Waterfall module(s) loading :')

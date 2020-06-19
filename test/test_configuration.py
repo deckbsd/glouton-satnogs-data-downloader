@@ -10,7 +10,7 @@ default_config = {
                     "HTTP_PROXY": ""
                 },
                 "MODULES": {
-                    "PAYLOAD": [],
+                    "ARCHIVE": [],
                     "WATERFALL": [],
                     "DEMODDATA": [],
                     "FRAME": [],
