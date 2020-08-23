@@ -1,6 +1,7 @@
 #!/usr/bin/python
 
 from datetime import datetime
+from pathlib import Path
 from glouton.services.observation.observationsService import ObservationsService
 from glouton.services.telemetry.telemetryService import TelemetryService
 from glouton.services.session.sessionService import SessionService
@@ -139,6 +140,7 @@ if __name__ == "__main__":
             tlm.extract()
 
         logger.Info("\n\nall jobs are finished\t(   ^ o^)\m/")
+        logger.Info("data are stored in " + str(Path(args.working_dir).absolute()))
     except KeyboardInterrupt:
         print("Exit...")
         sys.exit()
