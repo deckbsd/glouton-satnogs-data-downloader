@@ -39,7 +39,13 @@ class ObservationRepo:
 
             threadHelper.wait(threads)
         print('\ndownloading started (Ctrl + C to stop)...\t~(  ^o^)~')
+        self.__register_end_command()
         self.__create_workers_and_wait()
+
+    def __register_end_command(self):
+        for repo in self.__repos:
+            repo.register_end_command(
+                self.__cmd.start_date, self.__cmd.end_date)
 
     def __create_workers_and_wait(self):
         for repo in self.__repos:

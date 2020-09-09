@@ -14,11 +14,20 @@ def read():
             "HTTP_PROXY": ""
         },
         "MODULES": {
-            "ARCHIVE": [],
-            "WATERFALL": [],
-            "DEMODDATA": [],
-            "FRAME": [],
-            "FOR_ALL_OBSERVATION": []
+            "FOR_EACH": {
+                "ARCHIVE": [],
+                "WATERFALL": [],
+                "DEMODDATA": [],
+                "FRAME": [],
+                "FOR_ALL_OBSERVATION": []
+            },
+            "END": {
+                "ARCHIVE": [],
+                "WATERFALL": [],
+                "DEMODDATA": [],
+                "FRAME": [],
+                "FOR_ALL_OBSERVATION": []
+            }
         },
         "LOGFILE": "glouton.log"
     }

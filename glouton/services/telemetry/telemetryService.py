@@ -6,14 +6,14 @@ from glouton.repositories.telemetry.telemetryRepo import TelemetryRepo
 class TelemetryService:
     def __init__(self, cmd):
         self.__cmd = cmd
-        self.__module_service = ModuleService(self.__cmd)
+        self.__module_service = ModuleService(self.__cmd.working_dir)
         repos = self.filter_repositories()
         self.__telemetry_repo = TelemetryRepo(self.__cmd, repos)
 
     def filter_repositories(self):
         downloadable_data_repos = []
         downloadable_data_repos.append(
-            FrameRepo(self.__cmd.working_dir, self.__module_service.loadFrameModules()))
+            FrameRepo(self.__cmd.working_dir, self.__module_service.loadFrameModules(self.__cmd.frame_modules, 'FOR_EACH'), self.__module_service.loadFrameModules(self.__cmd.frame_end_modules, 'END')))
 
         return downloadable_data_repos
 

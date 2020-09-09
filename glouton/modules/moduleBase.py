@@ -6,3 +6,6 @@ class ModuleBase:
 
     def runAfterDownload(self, file_name, full_path, observation):
         raise NotImplementedError()
+
+    def runAfterDownloadCompleted(self, full_path):
+        raise NotImplementedError()

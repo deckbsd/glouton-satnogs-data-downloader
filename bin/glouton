@@ -65,10 +65,16 @@ if __name__ == "__main__":
                             help='download demod data')
         parser.add_argument('--demod-module', dest='demoddata_modules', default=None,
                             help='list of the modules to use while downloading demoddata(s) separated by a ,')
+        parser.add_argument('--demod-end-module', dest='demoddata_end_modules', default=None,
+                            help='list of the modules to use after downloading demoddata(s) separated by a ,')
         parser.add_argument('--archive-module', dest='archive_modules', default=None,
                             help='list of the modules to use while downloading archive(s) separated by a ,')
+        parser.add_argument('--archive-end-module', dest='archive_end_modules', default=None,
+                            help='list of the modules to use after downloading archive(s) separated by a ,')
         parser.add_argument('--waterfall-module', dest='waterfall_modules', default=None,
                             help='list of the modules to use while downloading waterfall(s) separated by a ,')
+        parser.add_argument('--waterfall-end-module', dest='waterfall_end_modules', default=None,
+                            help='list of the modules to use after downloading waterfall(s) separated by a ,')
         parser.add_argument('--last', dest='last', action='store_true',
                             help='restart a download from the last command line.')
         # DB API parameters :
@@ -76,6 +82,8 @@ if __name__ == "__main__":
                             help='download data from satnogs db api')
         parser.add_argument('--frame-module', dest='frame_modules', default=None, required='--db' in sys.argv,
                             help='list of the modules to use while downloading frame(s) separated by a ,')
+        parser.add_argument('--frame-end-module', dest='frame_end_modules', default=None,
+                            help='list of the modules to use after downloading frame(s) separated by a ,')
         parser.add_argument('--transmitter', dest='transmitter', default=None,
                             help='transmitter filter')
         parser.add_argument('--app-source', dest='app_source', default=None,
@@ -99,17 +107,29 @@ if __name__ == "__main__":
                     args.end_date, '%Y-%m-%dT%H:%M:%S')
 
             archive_modules = None
+            archive_end_modules = None
             demoddata_modules = None
+            demoddata_end_modules = None
             waterfall_modules = None
+            waterfall_end_modules = None
             frame_modules = None
+            frame_end_modules = None
             if args.archive_modules is not None:
                 archive_modules = args.archive_modules.split(',')
+            if args.archive_end_modules is not None:
+                archive_end_modules = args.archive_end_modules.split(',')
             if args.demoddata_modules is not None:
                 demoddata_modules = args.demoddata_modules.split(',')
+            if args.demoddata_end_modules is not None:
+                demoddata_end_modules = args.demoddata_end_modules.split(',')
             if args.waterfall_modules is not None:
                 waterfall_modules = args.waterfall_modules.split(',')
+            if args.waterfall_end_modules is not None:
+                waterfall_end_modules = args.waterfall_end_modules.split(',')
             if args.frame_modules is not None:
                 frame_modules = args.frame_modules.split(',')
+            if args.frame_end_modules is not None:
+                frame_end_modules = args.frame_end_modules.split(',')
             cmd = ProgramCmd(args.norad_id,
                              args.ground_station_id,
                              start_date,
@@ -120,13 +140,17 @@ if __name__ == "__main__":
                              args.download_waterfall,
                              args.download_demoddata,
                              archive_modules,
+                             archive_end_modules,
                              demoddata_modules,
+                             demoddata_end_modules,
                              waterfall_modules,
+                             waterfall_end_modules,
                              args.user_id,
                              args.transmitter_uuid,
                              args.transmitter_mode,
                              args.transmitter_type,
                              frame_modules,
+                             frame_end_modules,
                              args.observer,
                              args.app_source,
                              args.transmitter)
@@ -140,7 +164,8 @@ if __name__ == "__main__":
             tlm.extract()
 
         logger.Info("\n\nall jobs are finished\t(   ^ o^)\m/")
-        logger.Info("data are stored in " + str(Path(args.working_dir).absolute()))
+        logger.Info("data are stored in " +
+                    str(Path(args.working_dir).absolute()))
     except KeyboardInterrupt:
         print("Exit...")
         sys.exit()
