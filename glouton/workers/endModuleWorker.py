@@ -6,11 +6,11 @@ class EndModuleWorker:
     def execute(self):
         self.__download_end_status.wait()
         while self.__commands.empty() == False:
-            #try:
-            command = self.__commands.get()
-            command.process()
-            self.__commands.task_done()
-            #except:
-            #    pass
+            try:
+                command = self.__commands.get()
+                command.process()
+                self.__commands.task_done()
+            except:
+                pass
 
         self.__download_end_status.clear()
