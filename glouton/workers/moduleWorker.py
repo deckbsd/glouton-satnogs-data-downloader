@@ -1,7 +1,8 @@
 class ModuleWorker:
-    def __init__(self, queue, download_status):
+    def __init__(self, queue, download_status, is_download_finished):
         self.__commands = queue
         self.__download_status = download_status
+        self.__is_download_finished = is_download_finished
 
     def execute(self):
         while self.__commands.empty() == False or self.__download_status.isSet():
@@ -11,3 +12,5 @@ class ModuleWorker:
                 self.__commands.task_done()
             except:
                 pass
+
+        self.__is_download_finished.set()

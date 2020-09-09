@@ -4,43 +4,43 @@ from glouton.shared import config
 
 
 class ModuleService:
-    def __init__(self, cmd):
-        self.__cmd = cmd
+    def __init__(self, working_dir):
+        self.__working_dir = working_dir
         self.__config = config.read()
 
-    def loadDemoddataModules(self):
-        logger.Info('Demoddata module(s) loading :')
-        self.__cmd.demoddata_modules = self.__getModulesFromConfig(
-            self.__cmd.demoddata_modules, 'DEMODDATA')
-        self.__cmd.demoddata_modules = self.__getModulesFromConfig(
-            self.__cmd.demoddata_modules, 'FOR_ALL_OBSERVATION')
+    def loadDemoddataModules(self, demoddata_modules, when):
+        logger.Info('(' + when + ') Demoddata module(s) loading :')
+        demoddata_modules = self.__getModulesFromConfig(
+            demoddata_modules, when, 'DEMODDATA')
+        demoddata_modules = self.__getModulesFromConfig(
+            demoddata_modules, when, 'FOR_ALL_OBSERVATION')
 
-        return self.__loadModule(self.__cmd.demoddata_modules)
+        return self.__loadModule(demoddata_modules)
 
-    def loadArchiveModules(self):
-        logger.Info('Archive module(s) loading :')
-        self.__cmd.archive_modules = self.__getModulesFromConfig(
-            self.__cmd.archive_modules, 'ARCHIVE')
-        self.__cmd.archive_modules = self.__getModulesFromConfig(
-            self.__cmd.archive_modules, 'FOR_ALL_OBSERVATION')
+    def loadArchiveModules(self, archive_modules, when):
+        logger.Info('(' + when + ') Archive module(s) loading :')
+        archive_modules = self.__getModulesFromConfig(
+            archive_modules, when, 'ARCHIVE')
+        archive_modules = self.__getModulesFromConfig(
+            archive_modules, when, 'FOR_ALL_OBSERVATION')
 
-        return self.__loadModule(self.__cmd.archive_modules)
+        return self.__loadModule(archive_modules)
 
-    def loadWaterfallModules(self):
-        logger.Info('Waterfall module(s) loading :')
-        self.__cmd.waterfall_modules = self.__getModulesFromConfig(
-            self.__cmd.waterfall_modules, 'WATERFALL')
-        self.__cmd.waterfall_modules = self.__getModulesFromConfig(
-            self.__cmd.waterfall_modules, 'FOR_ALL_OBSERVATION')
+    def loadWaterfallModules(self, waterfall_modules, when):
+        logger.Info('(' + when + ') Waterfall module(s) loading :')
+        waterfall_modules = self.__getModulesFromConfig(
+            waterfall_modules, when, 'WATERFALL')
+        waterfall_modules = self.__getModulesFromConfig(
+            waterfall_modules, when, 'FOR_ALL_OBSERVATION')
 
-        return self.__loadModule(self.__cmd.waterfall_modules)
+        return self.__loadModule(waterfall_modules)
 
-    def loadFrameModules(self):
-        logger.Info('Frame module(s) loading :')
-        self.__cmd.frame_modules = self.__getModulesFromConfig(
-            self.__cmd.frame_modules, 'FRAME')
+    def loadFrameModules(self, frame_modules, when):
+        logger.Info('(' + when + ') Frame module(s) loading :')
+        frame_modules = self.__getModulesFromConfig(
+            frame_modules, when, 'FRAME')
 
-        return self.__loadModule(self.__cmd.frame_modules)
+        return self.__loadModule(frame_modules)
 
     def __loadModule(self, modules):
         if modules is None:
@@ -52,13 +52,13 @@ class ModuleService:
             loaded_module = importlib.import_module(
                 'glouton.modules.' + name.lower())
             module = getattr(loaded_module, name)
-            loaded_modules.append(module(self.__cmd.working_dir))
+            loaded_modules.append(module(self.__working_dir))
             logger.Info('module : ' + name + ' loaded')
         return loaded_modules
 
-    def __getModulesFromConfig(self, modules, config_array_name):
+    def __getModulesFromConfig(self, modules, when, config_array_name):
         try:
-            modules_from_config = self.__config['MODULES'][config_array_name]
+            modules_from_config = self.__config['MODULES'][when][config_array_name]
         except:
             logger.Warning('config.json : modules bad format')
             modules_from_config = []

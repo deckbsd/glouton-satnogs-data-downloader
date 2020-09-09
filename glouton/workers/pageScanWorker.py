@@ -32,6 +32,5 @@ class PageScanWorker:
     def __read_page(self, elements, start_date, end_date):
         for element in elements:
             for repo in self.__repos:
-                repo.register_command(
+                repo.register_download_command(
                     element, start_date, end_date)
-

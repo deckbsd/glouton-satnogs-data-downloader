@@ -112,9 +112,9 @@ Future :
 Modules :
 -------
 
-You can now create your own modules. These will be executed after each download from the category you selected. 
+You can now create your own modules. The modules can be executed after each data download or at the end of the process once every data and other modules have been executed.
 
-The module that you develop must herite from ObservationModuleBase (for data from satnogs network) or TelemetryModuleBase (for data from satnogs db) and must implement the "runAfterDownload" method. This method receive the file name (or the frame in case of download from satnogs db), the observation (or telemetry in case of download from satnogs db) and the full path as parameters.
+The module that you develop must herite from ObservationModuleBase (for data from satnogs network) or TelemetryModuleBase (for data from satnogs db) and must implement the "runAfterDownload" method or "runAfterDownloadCompleted" or both, depending when you want your module to run. The "runAfterDownload" method receive the file name (or the frame in case of download from satnogs db), the observation (or telemetry in case of download from satnogs db) and the full path as parameters. The "runAfterDownloadCompleted" only receive the full path as parameter.
 
 Also the module and the name of the python file must be the same. The py file must be placed into the "modules" directory.
 
@@ -126,6 +126,9 @@ class TestModule(ObservationModuleBase):
 
     def runAfterDownload(self, file_name, full_path, observation):
         print('executed after ' +  file_name)
+
+    def runAfterDownloadCompleted(self, full_path):
+        print("executed after the download is finished")
 ```
 
 Here is another example for a module used on the satnogs db data :
@@ -138,10 +141,22 @@ class TestModule(TelemetryModuleBase):
         print('executed after ' +  frame)
 ```
 
-Here is a example of a command you have to use to trigger the TestModule after each waterfall download :
+Here is a example of a command you have to use to trigger the TestModule and the AnotherModule after each waterfall download :
 
 ```
 -s 2017-05-20T00:51:54 -e 2017-09-20T00:51:54 -n 25338 --waterfall-module TestModule,AnotherModule
+```
+
+Here is a example of a command you have to use to trigger the TestModule after all waterfalls has been downloaded :
+
+```
+-s 2017-05-20T00:51:54 -e 2017-09-20T00:51:54 -n 25338 --waterfall-end-module TestModule
+```
+
+Or you can use the same module for both time, after each download and when the download is finished :
+
+```
+-s 2017-05-20T00:51:54 -e 2017-09-20T00:51:54 -n 25338 --waterfall-end-module TestModule --waterfall-module TestModule
 ```
 
 Configuration file :
