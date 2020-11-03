@@ -20,6 +20,10 @@ def test_loading_all_repository_types():
                         None,
                         None,
                         None,
+                        None,
+                        None,
+                        None,
+                        None,
                         )
 
     service = TelemetryService(params)

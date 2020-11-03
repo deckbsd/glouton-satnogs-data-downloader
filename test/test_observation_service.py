@@ -22,6 +22,10 @@ def test_loading_all_repository_types():
                         None,
                         None,
                         None,
+                        None,
+                        None,
+                        None,
+                        None,
                         )
 
     service = ObservationsService(params)
@@ -38,6 +42,10 @@ def test_loading_only_archive_repository_types():
                         True,
                         False,
                         False,
+                        None,
+                        None,
+                        None,
+                        None,
                         None,
                         None,
                         None,
@@ -74,6 +82,10 @@ def test_loading_only_waterfall_repository_types():
                         None,
                         None,
                         None,
+                        None,
+                        None,
+                        None,
+                        None,
                         )
 
     service = ObservationsService(params)
@@ -99,6 +111,10 @@ def test_loading_only_demoddata_repository_types():
                         None,
                         None,
                         None,
+                        None,
+                        None,
+                        None,
+                        None,
                         )
 
     service = ObservationsService(params)
@@ -113,6 +129,10 @@ def test_loading_only_archive_demoddata_repository_types():
                         True,
                         False,
                         True,
+                        None,
+                        None,
+                        None,
+                        None,
                         None,
                         None,
                         None,
@@ -150,6 +170,10 @@ def test_loading_only_waterfall_demoddata_repository_types():
                         None,
                         None,
                         None,
+                        None,
+                        None,
+                        None,
+                        None,
                         )
 
     service = ObservationsService(params)
@@ -165,6 +189,10 @@ def test_default_loading_repository():
                         False,
                         False,
                         False,
+                        None,
+                        None,
+                        None,
+                        None,
                         None,
                         None,
                         None,
