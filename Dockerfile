@@ -7,4 +7,4 @@ COPY . .
 # Install glouton module
 RUN python3 setup.py install
 
-CMD "/bin/bash"
+CMD "/bin/sh"
