@@ -1,5 +1,5 @@
 [![Known Vulnerabilities](https://snyk.io/test/github/deckbsd/glouton-satnogs-data-downloader/badge.svg)](https://snyk.io/test/github/deckbsd/glouton-satnogs-data-downloader)
-[![Docker Build](https://img.shields.io/docker/build/deckbsd/glouton-satnogs-data-downloader)](https://hub.docker.com/r/deckbsd/glouton-satnogs-data-downloader/)
+![Docker Cloud Build Status](https://img.shields.io/docker/cloud/build/deckbsd/glouton-satnogs-data-downloader)
 # glouton-satnogs-data-downloader
 This cli app is a downloader for the data provided by the satnogs network and the satnogs db APIs.
 
