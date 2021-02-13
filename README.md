@@ -173,3 +173,7 @@ All ideas or contributions are welcome. Feel free to use the [issues](https://gi
 License :
 -------
 [![license](https://img.shields.io/github/license/deckbsd/glouton-satnogs-data-downloader)](LICENSE)
+
+Donate :
+-------
+@deckbsd.elrond  Thanks a lot! ;-)
