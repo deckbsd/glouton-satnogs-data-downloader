@@ -60,4 +60,4 @@ class DemoddataRepo(Downloadable):
         return threads
 
     def __create_dir_name(self, target, start_date, end_date):
-        return target + '__' + start_date.strftime('%m-%d-%YT%H-%M-%S') + '__' + end_date.strftime('%m-%d-%YT%H-%M-%S')
+        return target + '__' + start_date.strftime('%Y-%m-%dT%H-%M-%S') + '__' + end_date.strftime('%Y-%m-%dT%H-%M-%S')
