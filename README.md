@@ -92,7 +92,6 @@ Actual features :
             * transmitter mode
             * transmitter uuid
             * transmitter type
-            * vetted status
             * vetted user
         * satnogs db
             * norad id

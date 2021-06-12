@@ -57,7 +57,7 @@ class ObservationRepo:
                 'ground_station': self.__cmd.ground_station_id,
                 'start': start_date.isoformat(),
                 'end': end_date.isoformat(),
-                'vetted_status': self.__cmd.observation_status,
+                'status': self.__cmd.observation_status,
                 'vetted_user': self.__cmd.user,
                 'transmitter_uuid': self.__cmd.transmitter_uuid,
                 'transmitter_mode': self.__cmd.transmitter_mode,

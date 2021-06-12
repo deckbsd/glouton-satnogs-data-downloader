@@ -40,7 +40,7 @@ if __name__ == "__main__":
         parser.add_argument('--gsid', '-g', dest='ground_station_id',
                             help='the ground station id')
         parser.add_argument('--status', '-t', dest='status',
-                            help='the Observation status (good, bad, unknown, failed')
+                            help='the Observation status (good, bad, unknown, failed, future)')
         parser.add_argument('--sdate', '-s', dest='start_date', required='--last' not in sys.argv,
                             help='start date (ex: 2018-01-20T00:51:54)')
         parser.add_argument('--edate', '-e', dest='end_date', required='--last' not in sys.argv,
