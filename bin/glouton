@@ -35,7 +35,7 @@ if __name__ == "__main__":
         glouton()
         parser = argparse.ArgumentParser(description='Execute get request.')
         # Network API parameters :
-        parser.add_argument('--norad', '-n', dest='norad_id', required='--last' not in sys.argv,
+        parser.add_argument('--norad', '-n', dest='norad_id', default=None,
                             help='the norad satellite id')
         parser.add_argument('--gsid', '-g', dest='ground_station_id',
                             help='the ground station id')
