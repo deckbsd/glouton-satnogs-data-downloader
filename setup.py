@@ -13,7 +13,7 @@ with open(path.join(here, 'README.md'), encoding='utf-8') as f:
     long_description = f.read()
 
 setup(
-    version="0.11.2",
+    version="0.12.0",
     name="glouton",
     description="`Glouton is a cli program which helps you downloading satnogs data`",
     url="https://github.com/deckbsd/glouton-satnogs-data-downloader.git",
