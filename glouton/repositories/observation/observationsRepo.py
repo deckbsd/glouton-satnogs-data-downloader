@@ -1,9 +1,9 @@
 from queue import Queue
 from glouton.shared.logger import logger
-from glouton.shared import dateHelper
 from glouton.workers.pageScanWorker import PageScanWorker
 from glouton.shared import threadHelper
 from glouton.infrastructure.satnogNetworkClient import SatnogNetworkClient
+from threading import Event
 
 
 class ObservationRepo:
@@ -15,30 +15,25 @@ class ObservationRepo:
 
     def extract(self):
         client = SatnogNetworkClient()
-        diff_days = dateHelper.diff_days(
-            self.__cmd.start_date, self.__cmd.end_date)
-        if diff_days < 8:
-            # no thread needed
-            url_params = self.__url_param_builder(
-                self.__cmd.start_date, self.__cmd.end_date)
-            pageScanner = PageScanWorker(
-                client, self.__cmd, self.__repos, self.OBSERVATION_URL, url_params, 1)
-            pageScanner.scan()
-        else:
-            threads = []
-            job = 1
-            for from_datetime, to_datetime in dateHelper.split_date(self.__cmd.start_date, self.__cmd.end_date, 4):
-                print(str(from_datetime) + " " + str(to_datetime))
+        threads = []
+        page_counter = 0
+        end_signal = Event()
+        while True:
+            for p in range(1, 5):
+                page = page_counter + p
                 url_params = self.__url_param_builder(
-                    from_datetime, to_datetime)
+                    self.__cmd.start_date, self.__cmd.end_date, page)
                 pageScanner = PageScanWorker(
-                    client, self.__cmd, self.__repos, self.OBSERVATION_URL, url_params, job)
+                    client, self.__cmd, self.__repos, self.OBSERVATION_URL, url_params, p, end_signal)
                 t = threadHelper.create_thread(pageScanner.scan)
                 threads.append(t)
-                job += 1
 
             threadHelper.wait(threads)
-        print('\ndownloading started (Ctrl + C to stop)...\t~(  ^o^)~')
+            if end_signal.isSet():
+                break
+
+            page_counter += 4
+        print("\ndownloading started (Ctrl + C to stop)...\t~(  ^o^)~")
         self.__register_end_command()
         self.__create_workers_and_wait()
 
@@ -52,7 +47,7 @@ class ObservationRepo:
             self.__threads.extend(repo.create_worker())
         threadHelper.wait(self.__threads)
 
-    def __url_param_builder(self, start_date, end_date):
+    def __url_param_builder(self, start_date, end_date, page):
         return {'satellite__norad_cat_id': self.__cmd.norad_id,
                 'ground_station': self.__cmd.ground_station_id,
                 'start': start_date.isoformat(),
@@ -62,5 +57,5 @@ class ObservationRepo:
                 'transmitter_uuid': self.__cmd.transmitter_uuid,
                 'transmitter_mode': self.__cmd.transmitter_mode,
                 'transmitter_type': self.__cmd.transmitter_type,
-                'page': '1',
+                'page': str(page),
                 'format': 'json'}

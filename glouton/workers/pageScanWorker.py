@@ -2,30 +2,29 @@ from glouton.shared.logger import logger
 
 
 class PageScanWorker:
-    def __init__(self, client, cmd, repos, path, url_params, job_number):
+    def __init__(self, client, cmd, repos, path, url_params, job_number, end_signal):
         self.PATH = path
         self.__client = client
         self.__cmd = cmd
         self.__repos = repos
         self.__job_number = str(job_number)
         self.__url_params = url_params
+        self.__end_signal = end_signal
 
     def scan(self):
         params = self.__url_params
-        page = 1
         job_string = 'job ' + self.__job_number
-        while True:
-            r = self.__client.get_from_base(
-                self.PATH, params)
-            if r.status_code != 200:
-                break
 
-            logger.Info(job_string +
-                        ' scanning page...' + params['page'])
-            self.__read_page(r.json(), self.__cmd.start_date,
-                             self.__cmd.end_date)
-            page += 1
-            params['page'] = str(page)
+        r = self.__client.get_from_base(
+            self.PATH, params)
+        if r.status_code != 200:
+            self.__end_signal.set()
+            return
+
+        logger.Info(job_string +
+                    ' scanning page...' + params['page'])
+        self.__read_page(r.json(), self.__cmd.start_date,
+                         self.__cmd.end_date)
 
         logger.Info(job_string + ' terminated')
 

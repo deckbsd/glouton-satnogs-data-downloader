@@ -74,7 +74,7 @@ Examples for downloading data from the satnogs DB
 
 simple command example for downloading frames for the satellite with the norad id 40014 and apply the process within the SomeModule module (You have to provide a module when you download the frames): 
 ```
-python ./bin/glouton --db -n --norad 40014 -s 2019-10-01T00:51:54 -e 2019-10-02T22:00:01 --db --frame-module SomeModule
+python ./bin/glouton --db --norad 40014 -s 2019-10-01T00:51:54 -e 2019-10-02T22:00:01 --frame-module SomeModule
 ```
 
 Actual features :
