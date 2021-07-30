@@ -9,7 +9,9 @@ import requests
 class ArchiveDownloadCommand(DownloadObservationCommand):
     def __init__(self, params, observation, modules_commands):
         DownloadObservationCommand.__init__(self, params, observation, modules_commands)
-        self.__json_id = "archive_url"
+        self.__json_id = "payload"
+        if observation['archived'] is True:
+            self.__json_id = "archive_url"
 
     def download(self):
         url = self.observation[self.__json_id]
